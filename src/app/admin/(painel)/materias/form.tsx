@@ -1,7 +1,7 @@
 'use client';
 import {useActionState} from 'react';
 import type {Draft} from '@/lib/redacao';
-import {saveDraft,transition} from '../actions';
+import {saveDraft,transition,deleteDraft} from '../actions';
 import {categories} from '@/lib/content';
 type EditorChoice={id:string;name:string};
 export function ArticleForm({draft,editors,date}:{draft?:Draft;editors:EditorChoice[];date:string}){
@@ -11,5 +11,5 @@ export function ArticleForm({draft,editors,date}:{draft?:Draft;editors:EditorCho
 }
 export function TransitionForm({draft}:{draft:Draft}){
  const[result,action,pending]=useActionState(transition,{message:''});
- return <form action={action}><input type="hidden" name="id" value={draft.id}/><input type="hidden" name="revision" value={draft.revision}/><div className="desk-actions">{draft.state==='draft'&&<button className="desk-button" name="target" value="in_review" disabled={pending}>Enviar para revisão →</button>}{draft.state==='in_review'&&<button className="desk-button" name="target" value="approved" disabled={pending}>Aprovar texto, fontes e imagem</button>}{draft.state==='approved'&&<button className="desk-button" name="target" value="published" disabled={pending}>Publicar no SPN News →</button>}{['in_review','approved'].includes(draft.state)&&<button className="desk-button secondary" name="target" value="draft" disabled={pending}>Voltar para rascunho</button>}{draft.published_at&&<button className="desk-button danger" name="target" value="withdrawn" disabled={pending}>Retirar do site</button>}</div>{result.message&&<p className="desk-notice" role="status">{result.message}</p>}</form>;
+ return <form action={action}><input type="hidden" name="id" value={draft.id}/><input type="hidden" name="revision" value={draft.revision}/><div className="desk-actions">{draft.state==='draft'&&<button className="desk-button" name="target" value="in_review" disabled={pending}>Enviar para revisão →</button>}{draft.state==='in_review'&&<button className="desk-button" name="target" value="approved" disabled={pending}>Aprovar texto, fontes e imagem</button>}{draft.state==='approved'&&<button className="desk-button" name="target" value="published" disabled={pending}>Publicar no SPN News →</button>}{['in_review','approved'].includes(draft.state)&&<button className="desk-button secondary" name="target" value="draft" disabled={pending}>Voltar para rascunho</button>}{draft.published_at&&<button className="desk-button danger" name="target" value="withdrawn" disabled={pending}>Retirar do site</button>}</div>{result.message&&<p className="desk-notice" role="status">{result.message}</p>}{draft.state==='draft'&&!draft.published_at&&<form action={deleteDraft} onSubmit={e=>{if(!window.confirm('Excluir este rascunho permanentemente?'))e.preventDefault()}}><input type="hidden" name="id" value={draft.id}/><button className="desk-button danger" type="submit">Excluir rascunho permanentemente</button></form>}</form>;
 }
