@@ -5,7 +5,7 @@ const ruby: EditorId = 'ruby-dias';
 const adailton: EditorId = 'adailton-jr';
 export const editorialSchedule: EditorialSlot[] = [
   { day:1,subject:'Lançamentos do mês: filmes, séries, games, música, famosos, animes e HQs',editorId:fernando,kind:'guide' },
-  { day:2,subject:'Duas notícias do dia sobre séries',kind:'news' },
+  { day:2,subject:'Duas notícias do dia sobre séries',editorId:ruby,kind:'news' },
   { day:3,subject:'Notícia do dia: mangás e animes',editorId:adailton,kind:'news' },
   { day:4,subject:'Notícia do dia: filmes e famosos',editorId:fernando,kind:'news' },
   { day:5,subject:'Lista dos 10 melhores filmes em um tema, com avaliação SPN, ironia e humor',editorId:adailton,kind:'opinion' },

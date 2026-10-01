@@ -3,7 +3,7 @@ export const septemberOpening: NewsItem = {
   slug: 'lancamentos-setembro-2026-dia-1', category: 'cultura-pop',
   title: 'Setembro começa com Marvel nas HQs, novos games e uma agenda pop que não cabe no sofá',
   excerpt: 'O primeiro dia do mês abre a seleção do SPN: quadrinhos de Alex Ross, jogos do PS Plus e estreias previstas de cinema, séries e música.',
-  historicalDate: '2026-09-01', byline: 'Fernando Valerious',
+  historicalDate: '2026-09-01', kind: 'guide', byline: 'Fernando Valerious',
   source: { name: 'ABRAMS · Marvel Dimensions', url: 'https://www.abramsbooks.com/product/marvel-dimensions_9781419787508/', note: 'Lançamento internacional em inglês: 01/09/2026.' },
   sources: [
     { name: 'ABRAMS · Marvel Dimensions', url: 'https://www.abramsbooks.com/product/marvel-dimensions_9781419787508/', note: 'Data da edição internacional: 01/09/2026. Não confirma edição brasileira.' },
@@ -13,7 +13,7 @@ export const septemberOpening: NewsItem = {
     { name: 'Napalm Records · Accept', url: 'https://label.napalmrecords.com/accept', note: 'Data de lançamento divulgada pela gravadora.' },
     { name: 'Louder · anúncio do Accept', url: 'https://www.loudersound.com/news/ghost-tobias-forge-metallica-kirk-hammett-judas-priest-rob-halford-appear-accept-50th-anniversary-album-2026', date: '2026-04-28', note: 'Registro do anúncio anterior ao mês de setembro.' },
   ],
-  context: 'TESTE HISTÓRICO · edição de 1 de setembro de 2026, preparada em 1 de outubro. As estreias futuras abaixo são previsões anunciadas, não eventos já concluídos no dia 1.',
+  context: 'Agenda de 1 de setembro de 2026. As estreias futuras abaixo são previsões anunciadas, sujeitas a mudanças e à programação de cada território.',
   body: [
     'Setembro abre com uma novidade para quem acompanha quadrinhos: a ABRAMS marca o lançamento internacional de Marvel Dimensions, de Alex Ross, para esta terça-feira, dia 1. Nos games, a programação mensal do PlayStation Plus também começa nesta data. Cinema, streaming e música já têm estreias previstas — e organizar essa fila é a pauta de abertura do SPN.',
     'A regra é separar o que chega no primeiro dia do que ainda está previsto. Nenhum trailer paga ingresso sozinho e nenhum catálogo internacional vira brasileiro por força de vontade. Feita essa pequena defesa contra a empolgação, vamos ao que merece entrar na agenda.',
@@ -21,7 +21,7 @@ export const septemberOpening: NewsItem = {
   sections: [
     { title: 'HQs: Alex Ross abre o mês com Marvel Dimensions', source: 0, paragraphs: [
       'A ficha da ABRAMS registra 1 de setembro para a edição em capa dura de Marvel Dimensions, de Alex Ross, com um quadrinho adicional de 32 páginas. É uma publicação internacional em inglês; a fonte não confirma lançamento brasileiro nesta mesma data.',
-      'Para este perfil editorial, fã de Marvel e DC, Ross basta para colocar a obra no radar. Isso é entusiasmo, não avaliação de uma leitura que não fizemos. A resenha fica para depois; a informação de hoje é a data da editora.',
+      'Para quem acompanha Marvel e DC, o nome de Alex Ross já coloca a obra no radar. O anúncio merece atenção dos fãs, mas a data de lançamento é o que está confirmado pela editora; uma avaliação da história depende da leitura.',
     ] },
     { title: 'Games: setembro do PS Plus começa no dia 1', source: 1, paragraphs: [
       'O PlayStation Blog lista Sniper Elite: Resistance, MLB The Show 26, Wobbly Life e Chained Echoes entre os jogos mensais, com janela de 1 de setembro a 5 de outubro. O benefício depende de assinatura e a seleção pode variar por região.',
@@ -44,7 +44,7 @@ export const septemberOpening: NewsItem = {
     ] },
     { title: 'Animes: adaptações entram no calendário do cinema', source: 2, paragraphs: [
       'A agenda brasileira aponta Blue Lock, em live-action, para 10 de setembro e One Piece – O Filme para 17 de setembro. Blue Lock aqui é uma adaptação com atores, não uma nova temporada animada. São previsões que dependem da programação de cada cinema.',
-      'Este é o ponto de partida do nosso teste: o guia de lançamentos previsto para o dia 1. Os outros dias terão suas próprias matérias. Não estamos fazendo um balanço dos trinta dias nem tratando todas essas estreias como acontecimentos de hoje.',
+      'Setembro começa com opções para quem quer cinema, quadrinhos, música ou uma nova maratona. O desafio é escolher o que cabe na agenda e conferir as datas antes de sair de casa. A cultura pop entrega possibilidades; as horas extras do dia, infelizmente, ainda não vieram no pacote.',
     ] },
   ],
   photo: {

@@ -1,9 +1,11 @@
 import type { CategorySlug } from './content';
 import { septemberOpening } from './september';
+import { septemberDayTwo } from './september-day-two';
 export const newsEdition = '01 de setembro de 2026';
 export const newsPublishedAt = '2026-10-01T17:04:33Z';
 export type NewsSource = { name: string; url: string; date?: string; note?: string };
-export type NewsPhoto = { path: string; alt: string; caption: string; creator: string; sourceUrl: string; originalUrl: string; license: string; licenseUrl: string };
-export type NewsItem = { slug: string; title: string; excerpt: string; category: CategorySlug; source: NewsSource; sources?: NewsSource[]; context: string; body: string[]; historicalDate?: string; byline?: string; sections?: { title: string; paragraphs: string[]; source: number }[]; photo?: NewsPhoto };
-export const news: NewsItem[] = [septemberOpening];
+export type NewsPhoto = { path: string; width?: number; height?: number; alt: string; caption: string; creator: string; sourceUrl: string; originalUrl: string; license: string; licenseUrl: string };
+export type NewsItem = { slug: string; title: string; excerpt: string; category: CategorySlug; source: NewsSource; sources?: NewsSource[]; context: string; body: string[]; historicalDate?: string; publishedAt?: string; kind?: 'guide' | 'news'; byline?: string; sections?: { title: string; paragraphs: string[]; source: number }[]; photo?: NewsPhoto };
+export const news: NewsItem[] = [...septemberDayTwo, septemberOpening];
+export const editionLabel = (date: string) => new Intl.DateTimeFormat('pt-BR', {day:'2-digit', month:'long', year:'numeric', timeZone:'UTC'}).format(new Date(date + 'T12:00:00Z'));
 export const getNews = (slug: string) => news.find(item => item.slug === slug);
