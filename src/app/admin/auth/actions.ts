@@ -82,5 +82,5 @@ export async function logout() {
     const client = await editorialClient();
     await client.auth.signOut();
   }
-  redirect('/admin/login');
+  redirect('/');
 }
