@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { categories } from '@/lib/content';
 export default function Header() {
  const [open,setOpen]=useState(false); const path=usePathname();
- return <><div className="demo-bar">VERSÃO DEMONSTRATIVA <span>Textos demonstrativos · fotos e ilustrações identificadas</span></div><header className="site-header">
+ return <><div className="demo-bar">SPN EM CONSTRUÇÃO <span>Notícias com fontes · exemplos fictícios identificados</span></div><header className="site-header">
  <div className="masthead"><Link href="/" className="brand-banner" aria-label="SPN News — início. O mundo pop levado a sério. Mais ou menos." /></div>
  <div className="nav-shell"><div className="wrap nav-tools">
  <Link href="/" className="home-tab" aria-label="Início"><Home size={19} fill="currentColor" /></Link>
@@ -16,3 +16,4 @@ export default function Header() {
  <Link className="panel-link" href="/admin" aria-label="Conhecer o futuro painel editorial"><UserRound size={19}/><span>PAINEL</span></Link>
  </div></div></header></>;
 }
+

@@ -61,3 +61,7 @@ Teste Home em desktop e celular; menu mobile pelo teclado; as sete categorias; b
 
 Giro SPN com filtros, roteiros de vídeos em /videos, seleção em /listas, apresentação do futuro podcast em /podcast, calendário fictício em /calendario e curadoria demonstrativa de filmes/séries na Home. Vídeos não estão gravados; podcast não tem episódios; ranking não usa métricas reais; automação permanece planejada. Todos esses estados são identificados na interface.
 
+
+## Primeira edição real
+
+Em 1 de outubro de 2026, a Home passou a destacar três resumos de comunicados oficiais em `/atualizacoes` e `/noticia/[slug]`. Dados e fontes em `src/lib/news.ts`. Datas de anúncio e de evento, escopo regional e apoio de IA são explicitados. Não há atualização automática. As nove matérias de `/materia` continuam fictícias. Categorias e busca separam notícias de exemplos. O bloqueio de indexação permanece durante a construção; o sitemap inclui notícias reais somente quando SITE_INDEXABLE=true.

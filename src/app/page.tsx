@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { DailyNews } from '@/components/news';
 import Link from 'next/link';
 import { ArrowRight, Flame, Play, Youtube, CheckCircle2, Clapperboard, MonitorPlay, Gamepad2, Headphones, Star, Sparkles, Orbit, List, BarChart3 } from 'lucide-react';
 import { articles, categories } from '@/lib/content';
@@ -10,7 +11,7 @@ const categoryIcons=[Clapperboard,MonitorPlay,Gamepad2,Headphones,Star,Sparkles,
 const descriptions=['Histórias e conversas sobre cinema','Maratonas, episódios e universos','Exploração, jogos e próxima fase','Álbuns, playlists e muito mais','Bastidores do mundo pop','Animação, mangá e quadrinhos','Tendências, memória e curiosidades'];
 export default function Home(){
  const hero=articles[0];
- return <main id="conteudo" className="home-page"><div className="wrap">
+ return <main id="conteudo" className="home-page"><div className="wrap"><DailyNews/><p className="demo-section-label">A seguir: exemplos de layout e conteúdo fictício, identificados como demonstração.</p>
  <section className="hot-strip" aria-label="Tendências demonstrativas"><strong><Flame fill="currentColor"/>TÁ PEGANDO FOGO!<span>DEMO</span></strong>{[articles[0],articles[2],articles[3],articles[5],articles[4]].map((a,i)=><Link key={a.slug} href={'/materia/'+a.slug}><b>{i+1}</b><span>{['Cinema em outro universo','A cidade vira playground','Um lado B para ouvir','Por trás dos holofotes','Histórias fora dos quadros'][i]}</span></Link>)}</section>
  <section className="hero-grid" aria-label="Destaques demonstrativos"><div className="hero-feature"><article className="hero-main"><Artwork art="cinema" large/><div className="hero-shade"/><span className="hero-disclosure">DEMONSTRAÇÃO · IMAGEM FICTÍCIA</span><div className="hero-content"><CategoryTag slug="filmes"/><h1><Link href={'/materia/'+hero.slug}>{hero.title}</Link><span>UMA BOA HISTÓRIA NÃO TEM LIMITES.</span></h1><p>{hero.excerpt} O play é só o começo da conversa.</p><Link className="yellow-button" href={'/materia/'+hero.slug}>LEIA A MATÉRIA <ArrowRight size={20}/></Link></div></article><PhotoCredit art="cinema"/></div>
  <div className="hero-side">{articles.slice(1,4).map(a=><div className="side-item" key={a.slug}><Link href={'/materia/'+a.slug} className="side-story"><Artwork art={a.art}/><div className="side-content"><CategoryTag slug={a.category}/><h2>{a.title}</h2><p>{a.excerpt}</p></div><span className="side-demo">DEMO</span></Link><PhotoCredit art={a.art}/></div>)}</div></section>
