@@ -12,7 +12,7 @@ A fila fica em `../editorial-drafts/AAAA-MM-DD/`, fora do app e das rotas públi
 
 1. Ler as configurações atuais e gerar o plano. Não publicar em dias sem pauta ou responsável.
 2. Pesquisar fontes primárias, abrir os documentos e distinguir data do comunicado, data do evento e território.
-3. Produzir rascunho Markdown com título, resumo, corpo, fontes, ressalvas, responsável previsto e indicação de apoio de IA. O perfil de voz não significa revisão humana já realizada.
+3. Produzir matérias individuais do dia, nunca substituir a pauta por um resumo mensal ou um boletim de manchetes. Cada matéria tem seu próprio rascunho Markdown com título, chamada curta para o card, abertura, desenvolvimento, contexto, fontes, ressalvas, responsável previsto e indicação de apoio de IA. A chamada do card não substitui o corpo da matéria. No dia 2, salvar duas matérias separadas. O perfil de voz não significa revisão humana já realizada.
 4. Propor imagens somente quando houver licença ou autorização verificável, registrando autor, origem e condições. Na falta delas, deixar a seleção pendente.
 5. Para rankings, verificar período, mercado e critérios. Listas de melhores/piores são opinião editorial. No dia 1, preparar guia mensal por área; lacunas devem ser registradas, nunca preenchidas com lançamentos inventados.
 6. Salvar localmente o rascunho e o status `needs_review`, ou `needs_research` quando faltarem evidências. Não enviar rascunhos para GitHub nem para o site automaticamente.
