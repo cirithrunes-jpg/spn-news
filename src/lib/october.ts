@@ -9,7 +9,21 @@ export const litoSousaTribute: NewsItem = {
   byline: 'Redação SPN',
   historicalDate: '2026-10-01',
   publishedAt: '2026-10-01T21:45:00Z',
-  modifiedAt: '2026-10-01T21:45:00Z',
+  modifiedAt: '2026-10-02T12:00:00Z',
+  photo: {
+    path: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Lito_Sousa_2022.png',
+    width: 213,
+    height: 276,
+    alt: 'Lito Sousa em 2022',
+    caption: 'Lito Sousa, especialista em aviação e criador do Aviões e Músicas, em registro de 2022.',
+    creator: 'Toledo e Advogados Associados',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Lito_Sousa_2022.png',
+    originalUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Lito_Sousa_2022.png',
+    license: 'CC BY 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/3.0/',
+    sourceName: 'Wikimedia Commons',
+    rightsReserved: false
+  },
   context: 'Homenagem publicada em 1º de outubro de 2026 após a confirmação da morte de Lito Sousa, aos 59 anos. Nesta matéria, o SPN deixa de lado o humor para lembrar sua trajetória e seu legado.',
   source: {
     name: 'Exame — Lito Sousa, dono do canal Aviões e Músicas, morre aos 59 anos',
