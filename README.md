@@ -39,7 +39,7 @@ O MVP não requer banco, chaves de API, storage, cron ou serviços pagos para fu
 - Áreas de publicidade e afiliados explicitamente marcadas, sem anúncios ou ofertas ativos.
 - Metadata, canônicas, Open Graph, robots, sitemap e schema `NewsArticle` demonstrativo.
 - Contratos TypeScript para futuros rascunhos, revisão, automação e pacotes sociais; página pública de apresentação do futuro admin.
-- Ilustrações vetoriais feitas em CSS e ícones Lucide, sem imagens de terceiros ou APIs externas.
+- Layout inspirado na referência visual do usuário: cabeçalho ilustrado, três destaques laterais, Giro, vídeos, oito atalhos, editorias, curadoria e calendário.
 
 ## Conteúdo e SEO
 
@@ -51,8 +51,13 @@ Por padrão, o site inteiro recebe `noindex,nofollow`, o robots bloqueia rastrea
 
 `src/lib/editorial-workflow.ts` define contratos, não um backend. `/admin` não tem autenticação, edição ou publicação. Antes de ativar esses recursos, implemente autenticação, autorização por função, armazenamento, auditoria e revisão humana obrigatória. Não crie endpoints de escrita sem proteção. As legendas e formatos de exemplo estão nos dados das matérias; não há envio para redes sociais.
 
-Não há coleta de e-mails, analytics, cookies publicitários ou links afiliados. Fontes Google Fonts são carregadas pelo navegador, com fontes locais de fallback; a navegação e o build não dependem desse serviço. Antes do lançamento, configure política de privacidade conforme os serviços ativados, fontes, correções, contatos e avisos comerciais. Nenhum segredo deve entrar no Git: use as variáveis protegidas da Vercel para integrações futuras.
+Fotografias de arquivo licenciadas de Billie Eilish (Raph_PH / CC BY 4.0) e Ryan Reynolds (Gage Skidmore / CC BY-SA 3.0) incluem autor, fonte e licença visíveis abaixo das imagens. Veja docs/IMAGE-CREDITS.md. As demais artes são fictícias, geradas por IA ou feitas em CSS; prompts em docs/ASSETS.md. Crédito sozinho não substitui licença ou autorização de uso. Não há coleta de e-mails, analytics, cookies publicitários ou links afiliados. Fontes Google Fonts são carregadas pelo navegador, com fontes locais de fallback; a navegação e o build não dependem desse serviço. Antes do lançamento, configure política de privacidade conforme os serviços ativados, fontes, correções, contatos e avisos comerciais. Nenhum segredo deve entrar no Git: use as variáveis protegidas da Vercel para integrações futuras.
 
 ## Avaliação manual
 
 Teste Home em desktop e celular; menu mobile pelo teclado; as sete categorias; busca com e sem acentos e sem resultados; cada matéria e seus links; categoria/slug inexistentes (404); `/robots.txt` e `/sitemap.xml`. Confirme ausência de overflow horizontal e os avisos de demonstração e publicidade.
+
+## Novos blocos navegáveis
+
+Giro SPN com filtros, roteiros de vídeos em /videos, seleção em /listas, apresentação do futuro podcast em /podcast, calendário fictício em /calendario e curadoria demonstrativa de filmes/séries na Home. Vídeos não estão gravados; podcast não tem episódios; ranking não usa métricas reais; automação permanece planejada. Todos esses estados são identificados na interface.
+
