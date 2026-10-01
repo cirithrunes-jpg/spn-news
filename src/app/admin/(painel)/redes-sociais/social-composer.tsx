@@ -4,9 +4,10 @@ import { queueSocial } from './actions';
 import { socialProfiles } from '@/lib/social-profiles';
 type Article = { slug: string; title: string; excerpt: string; byline?: string; image?: string; imageCredit?: string };
 function captionFor(article: Article, baseUrl: string) { return `${article.title}\n\n${article.excerpt}\n\nLeia no SPN News: ${baseUrl}/noticia/${article.slug}\n\n#SPNNews #CulturaPop`; }
-export default function SocialComposer({ articles, baseUrl }: { articles: Article[]; baseUrl: string }) {
-  const [slug, setSlug] = useState(articles[0]?.slug ?? '');
-  const [caption, setCaption] = useState(articles[0] ? captionFor(articles[0], baseUrl) : '');
+export default function SocialComposer({ articles, baseUrl, initialSlug }: { articles: Article[]; baseUrl: string; initialSlug?: string }) {
+  const initialArticle = articles.find(item => item.slug === initialSlug) ?? articles[0];
+  const [slug, setSlug] = useState(initialArticle?.slug ?? '');
+  const [caption, setCaption] = useState(initialArticle ? captionFor(initialArticle, baseUrl) : '');
   const [notice, setNotice] = useState('');
   const article = articles.find(item => item.slug === slug);
   async function copy(value: string) { try { await navigator.clipboard.writeText(value); setNotice('Copiado. Agora você pode colar no perfil oficial.'); } catch { setNotice('Não foi possível copiar automaticamente. Selecione e copie o texto abaixo.'); } }
