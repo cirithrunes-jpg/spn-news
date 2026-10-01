@@ -34,3 +34,4 @@ body{background:linear-gradient(#fff,#f5f6f8);font-size:14px}.wrap{max-width:132
 /* Discreet, keyboard-accessible newsroom entry. */
 .footer-bottom .footer-redacao{display:inline-block;margin-left:14px;font-size:11px;font-weight:400;letter-spacing:0;color:inherit;opacity:.72;text-transform:none}
 .footer-bottom .footer-redacao:hover,.footer-bottom .footer-redacao:focus-visible{opacity:1;text-decoration:underline}
+.public-socials{display:flex;align-items:center;flex-shrink:0}.public-socials a{display:grid;place-items:center;width:32px;height:32px;color:#ffc928;border-radius:6px}.public-socials a:hover,.public-socials a:focus-visible{background:#303030;color:#ff7728}
