@@ -1,8 +1,22 @@
 'use client';
-import { useActionState, useState } from 'react';
-import { login, recover, changePassword } from '../auth/actions';
-export function LoginForm({ configured, reset = false }: { configured: boolean; reset?: boolean }) {
-  const [mode, setMode] = useState<'login'|'first'|'recover'>('login');
-  const [result, action, pending] = useActionState(reset ? changePassword : mode === 'recover' ? recover : login, { message: '' });
-  return <><form action={action} className="desk-form"><input type="hidden" name="mode" value={mode}/>{!reset && <label>E-mail<input type="email" name="email" autoComplete="email" required maxLength={254}/></label>}{(reset || mode !== 'recover') && <label>{mode === 'first' || reset ? 'Crie sua senha' : 'Senha'}<input type="password" name="password" autoComplete={mode === 'first' || reset ? 'new-password' : 'current-password'} minLength={mode === 'first' || reset ? 12 : 8} maxLength={128} required/></label>}{result.message && <p role="status" className={result.success ? 'desk-success' : 'desk-notice'}>{result.message}</p>}<button className="desk-button" disabled={!configured || pending}>{pending ? 'Aguarde…' : reset ? 'Salvar nova senha' : mode === 'recover' ? 'Enviar recuperação' : mode === 'first' ? 'Criar meu acesso' : 'Entrar na redação →'}</button></form>{!reset && <div className="login-options"><button type="button" onClick={() => setMode(mode === 'first' ? 'login' : 'first')}>{mode === 'first' ? 'Já tenho uma conta' : 'Primeiro acesso'}</button><button type="button" onClick={() => setMode(mode === 'recover' ? 'login' : 'recover')}>{mode === 'recover' ? 'Voltar para entrar' : 'Esqueci minha senha'}</button></div>}<p className="desk-muted login-note">Apenas contas autorizadas entram no painel. Confirmar o e-mail não concede acesso à redação.</p></>;
+
+import { useActionState } from 'react';
+import { login } from '../auth/actions';
+
+export function LoginForm({ configured }: { configured: boolean; reset?: boolean }) {
+  const [result, action, pending] = useActionState(login, { message: '' });
+
+  return <>
+    <form action={action} className="desk-form">
+      <label>
+        E-mail
+        <input type="email" name="email" autoComplete="email" required maxLength={254}/>
+      </label>
+      {result.message && <p role="status" className={result.success ? 'desk-success' : 'desk-notice'}>{result.message}</p>}
+      <button className="desk-button" disabled={!configured || pending}>
+        {pending ? 'Enviando…' : 'Enviar link de acesso →'}
+      </button>
+    </form>
+    <p className="desk-muted login-note">Sem senha: o acesso acontece por um link seguro enviado ao e-mail de uma conta autorizada da redação.</p>
+  </>;
 }
