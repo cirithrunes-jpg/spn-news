@@ -6,12 +6,33 @@ import { siteUrl } from '@/lib/site';
 
 export type LoginResult = { message: string; success?: boolean };
 
+const PRIMARY_ADMIN_EMAIL = 'spnerds.oficial@gmail.com';
+
 async function authCallbackUrl() {
   const requestHeaders = await headers();
   const host = requestHeaders.get('x-forwarded-host') ?? requestHeaders.get('host');
   const protocol = requestHeaders.get('x-forwarded-proto') ?? (host?.includes('localhost') ? 'http' : 'https');
   const origin = host ? `${protocol}://${host}` : siteUrl.origin;
   return new URL('/admin/auth/callback', origin).href;
+}
+
+export async function requestAdminAccess(_previous: LoginResult, _form: FormData): Promise<LoginResult> {
+  if (!editorialConfigured()) return { message: 'O acesso ao painel ainda não está conectado ao banco da redação.' };
+
+  const client = await editorialClient();
+  const { error } = await client.auth.signInWithOtp({
+    email: PRIMARY_ADMIN_EMAIL,
+    options: {
+      emailRedirectTo: await authCallbackUrl(),
+      shouldCreateUser: false,
+    },
+  });
+
+  if (error) return { message: 'Não foi possível enviar o acesso agora. Tente novamente em instantes.' };
+  return {
+    message: 'Acesso enviado para o e-mail do administrador. Abra a mensagem e toque no link para entrar.',
+    success: true,
+  };
 }
 
 export async function login(_previous: LoginResult, form: FormData): Promise<LoginResult> {
