@@ -1,0 +1,17 @@
+/* eslint-disable @typescript-eslint/no-require-imports -- CommonJS test harness. */
+const fs=require('fs'),vm=require('vm'),ts=require('typescript'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+function compile(file,imports,extra={}){const bundle={exports:{}};vm.runInNewContext(ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,{module:bundle,exports:bundle.exports,require:n=>imports[n]??(()=>{throw Error(n)})(),...extra});return bundle.exports;}
+const content=compile('src/lib/social-content.ts',{'./site':{siteUrl:new URL('https://spn-news.vercel.app')}} ,{URL});
+assert.throws(()=>content.socialImage({photo:{path:'https://localhost/a.jpg'}}));assert.throws(()=>content.socialImage({photo:{path:'https://site.example/a.png'}}));assert.equal(content.socialImage({photo:{path:'/photos/photo.jpg'}}),'https://spn-news.vercel.app/photos/photo.jpg');
+async function run(mode){const updates=[];let calls=0;
+const client={from(table){let operation='select',value;const query={select(){return query},eq(){return query},gte(){return query},order(){return query},limit(){return query},update(v){operation='update';value=v;return query},upsert(){return Promise.resolve({error:null})},single(){return resolve()},maybeSingle(){return resolve()},then(a,b){return resolve().then(a,b)}};function resolve(){if(operation==='update'){updates.push(value);return Promise.resolve({data:mode==='claimed'?null:{id:'job'},error:null})}return Promise.resolve({error:null,data:table==='spn_social_settings'?{enabled:true,enabled_at:'2026-10-01'}:table==='spn_publications'?{withdrawn:mode==='withdrawn',content:{photo:{path:'https://example.com/a.jpg'}}}:[{id:'job',slug:'article',caption:'caption',image_url:'https://example.com/a.jpg'}].filter(()=>mode!=='empty')})}if(table==='spn_publications'){query.then=(a,b)=>Promise.resolve({data:[],error:null}).then(a,b)}return query}};
+const route=compile('src/app/api/cron/instagram/route.ts',{'node:crypto':crypto,'@/lib/instagram':{instagramConfigured:()=>true,verifyInstagramAccount:async()=>{},socialWorkerClient:()=>client,instagramRequest:async(path)=>{calls++;if(path.endsWith('/media_publish')){if(mode==='timeout')throw Error('No response');return{id:'media'}}if(path.endsWith('/media'))return{id:'container'};return{status_code:'FINISHED'}}},'@/lib/social-content':{socialCaption:()=>'',socialImage:()=> 'https://example.com/a.jpg'}},{process:{env:{CRON_SECRET:'test-private-secret',INSTAGRAM_USER_ID:'123'}},Buffer,Response,setTimeout});
+const denied=await route.GET(new Request('https://site/api'));assert.equal(denied.status,401);assert.equal(calls,0);
+const response=await route.GET(new Request('https://site/api',{headers:{authorization:'Bearer test-private-secret'}}));
+if(mode==='success'){assert.equal((await response.json()).status,'published');assert.equal(updates.at(-1).media_id,'media');assert.equal(calls,3)}
+if(mode==='timeout')assert.equal(updates.at(-1).state,'uncertain');
+if(mode==='withdrawn'){assert.equal(updates.at(-1).state,'cancelled');assert.equal(calls,0)}
+if(mode==='claimed')assert.equal(calls,0);
+}
+(async()=>{for(const mode of ['success','timeout','withdrawn','claimed'])await run(mode);console.log('PASS: private cron authorization, claimed-job isolation, confirmed publication, ambiguous response, withdrawal, image validation');})().catch(e=>{console.error(e);process.exitCode=1});
+

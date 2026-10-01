@@ -51,3 +51,15 @@ Validação: `pnpm lint`, `pnpm typecheck`, `pnpm build`; `node scripts/verify-e
 ### Redes sociais
 Em /admin/redes-sociais, editores autenticados podem selecionar uma reportagem publicada, editar e copiar sua legenda e seu link, e abrir a imagem com os créditos. A edição é temporária e não publica nas redes. Perfis oficiais e autorização das plataformas ainda precisam ser configurados; não há postagem automática ativa.
 
+
+### Automação do Instagram
+
+`/admin/redes-sociais` possui fila persistente, cancelamento de itens pendentes e histórico. Nenhuma conta foi autorizada ainda. O botão de ativar permanece indisponível até configurar os segredos privados; adicionar o link do perfil não autoriza publicar.
+
+Pré-requisitos: conta profissional `@fernando.cspn`, app Meta com Instagram Login, token autorizado para `instagram_business_basic` e `instagram_business_content_publish`, identificador `user_id` desse Instagram e versão suportada da API. Configure `INSTAGRAM_ACCESS_TOKEN`, `INSTAGRAM_USER_ID`, `INSTAGRAM_API_VERSION`, `SUPABASE_SECRET_KEY` e `CRON_SECRET` somente nas variáveis privadas da Vercel. Nunca envie essas credenciais por chat, no GitHub ou em variáveis NEXT_PUBLIC. Para o backend, use uma secret key server-only do projeto Supabase escolhido; a chave publishable não substitui essa credencial.
+
+Após a configuração, ative pelo painel. O servidor confere o username e o user_id autorizados. O cron da Vercel executa diariamente às 12:00 UTC (9h de Brasília, com janela de execução do plano). Enfileira matérias publicadas depois da ativação e envia no máximo uma por execução. Matérias históricas entram somente pelo botão de salvar na fila. Novos envios devem ter foto HTTPS pública em JPEG e respeitar os limites de formato da Meta; recusas aparecem no histórico. A hospedagem não publica instantaneamente após cada matéria.
+
+O token tem validade e pode precisar de renovação na Meta; nesta versão não há renovação OAuth automática. Ao expirar, o worker recusa enviar e mantém os itens pendentes. Não configure tokens em formulários públicos. Pausar impede novas execuções, mas uma operação já em andamento pode terminar. Resposta perdida após `media_publish` fica como resultado incerto e nunca repete automaticamente. Itens em processamento interrompido também exigem conferência manual no Instagram; não existe botão de tentar novamente que possa criar duplicatas. Reativar inicia um novo recorte de matérias a partir daquele momento.
+
+Banco: `supabase/social-automation.sql`, tabelas SPN isoladas com RLS. Não contém tokens. Teste: `node scripts/verify-social.cjs`. Verificar também o login no painel, permissões negadas a visitantes/não membros e, depois da autorização, uma postagem real controlada. Sem a autorização, os testes da API usam respostas simuladas e não comprovam publicação real.
