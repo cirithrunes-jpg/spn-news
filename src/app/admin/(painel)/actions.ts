@@ -32,6 +32,12 @@ export async function transition(_previous:SaveResult,form:FormData):Promise<Sav
  if(error)return{message:'Não foi possível concluir. Reabra a matéria e tente novamente.'};
  revalidatePath('/','layout');redirect('/admin/materias/'+id+'?salvo=1');
 }
+export async function deleteDraft(form:FormData){
+ const{client}=await requireEditor(),id=String(form.get('id')??''),current=await getDraft(id);if(!current)redirect('/admin/materias');
+ if(current.published_at)throw new Error('Matérias que já foram publicadas devem ser retiradas do site, preservando o histórico editorial.');
+ const{error}=await client.from('spn_drafts').delete().eq('id',id).eq('state','draft');if(error)throw new Error('Não foi possível excluir o rascunho.');
+ revalidatePath('/admin');redirect('/admin/materias');
+}
 export async function saveSlot(form:FormData){
  const{client}=await requireEditor(),day=Number(form.get('day')),subject=String(form.get('subject')??'').trim(),editorId=String(form.get('editorId')??''),kind=String(form.get('kind')??''),count=Number(form.get('count'));
  if(!Number.isInteger(day)||day<1||day>31||subject.length<5||subject.length>1000||!getEditor(editorId as Parameters<typeof getEditor>[0])||!['news','guide','feature','opinion','data'].includes(kind)||!Number.isInteger(count)||count<1||count>10)throw new Error('Confira os campos do calendário.');
