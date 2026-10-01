@@ -1,6 +1,6 @@
 # Calendário editorial recorrente
 
-A programação fornecida pelo responsável pelo SPN está registrada em `src/lib/editorial-calendar.ts`. A visualização mensal está em `/admin/calendario`, uma página pública de planejamento sem funções de escrita ou publicação automática.
+A programação fornecida pelo responsável pelo SPN está registrada em `editorial-config/editorial-calendar.ts`. Configuração interna para o futuro bot. Não existe página pública, endpoint ou recurso estático que exponha as pautas. A antiga rota /admin/calendario foi removida.
 
 - Repetir as pautas dos dias 1 a 30 de janeiro a dezembro.
 - Dias 2, 13 e 15: responsável ainda não informado.
@@ -15,3 +15,4 @@ A programação fornecida pelo responsável pelo SPN está registrada em `src/li
 - As pautas só mudam de planejamento para publicação após produção e revisão. O calendário não prova autoria efetiva e não agenda um robô.
 
 Perfis de voz em `docs/EDITORIAL-VOICES.md`.
+

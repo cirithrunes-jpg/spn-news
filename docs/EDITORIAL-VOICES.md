@@ -22,4 +22,5 @@ Escrita alegre, acessível e espontânea, com identidade baiana e nordestina. Hu
 - `voiceProfileId` define a referência estilística; `authorId` e `reviewerId` só devem ser preenchidos quando o trabalho correspondente ocorrer.
 - Notícias atuais com apoio de IA mantêm essa informação. Os perfis não reatribuem automaticamente matérias já publicadas.
 
-Dados estruturados em `src/lib/editors.ts` e contratos de rascunho em `src/lib/editorial-workflow.ts`.
+Dados estruturados em `editorial-config/editors.ts` e contratos de rascunho em `src/lib/editorial-workflow.ts`.
+
