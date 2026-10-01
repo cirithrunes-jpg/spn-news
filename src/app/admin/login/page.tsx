@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { LockKeyhole } from 'lucide-react';
+import { KeyRound } from 'lucide-react';
 import { editorialConfigured } from '@/lib/supabase/server';
 import { LoginForm } from './form';
 
 const notices: Record<string, string> = {
-  'sem-acesso': 'Sua conta ainda não está autorizada para a redação.',
-  'link-invalido': 'Este link não pôde ser confirmado. Solicite um novo acesso.',
-  'senha-alterada': 'Senha alterada. Agora você pode entrar pelo link seguro enviado ao seu e-mail.',
+  'sem-acesso': 'Esta sessão não tem autorização para a redação.',
+  'link-invalido': 'Este link expirou ou não pôde ser confirmado. Peça um novo acesso.',
+  'senha-alterada': 'Acesso atualizado.',
 };
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ aviso?: string }> }) {
@@ -16,17 +16,16 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   return <main id="conteudo" className="desk-login">
     <section className="login-story">
       <Link href="/" className="desk-brand"><span className="desk-play">▶</span>SPN<span className="desk-orange">NEWS</span></Link>
-      <span className="desk-eyebrow">BASTIDORES DO PLAY</span>
-      <h1>A próxima<br/>boa história<br/>começa aqui<span>.</span></h1>
-      <p>Pautas, contexto e a personalidade da redação. Tudo no seu lugar, antes de entrar no ar.</p>
-      <div className="login-labels"><span>FERNANDO</span><span>RUBY</span><span>ADAILTON</span></div>
+      <span className="desk-eyebrow">REDAÇÃO SPN</span>
+      <h1>Painel<br/>administrativo<span>.</span></h1>
+      <p>Acesso direto do administrador do SPN News.</p>
     </section>
     <section className="login-box">
-      <span className="desk-lock"><LockKeyhole/></span>
-      <span className="desk-eyebrow">ACESSO RESTRITO</span>
-      <h2>Entre por link seguro.</h2>
-      <p className="desk-muted">Informe seu e-mail autorizado. Você receberá um link para abrir a redação sem senha.</p>
-      {!configured && <p className="desk-notice">O painel está preparado. O login será liberado após conectar o banco da redação.</p>}
+      <span className="desk-lock"><KeyRound/></span>
+      <span className="desk-eyebrow">ACESSO DO ADM</span>
+      <h2>Entrar no painel.</h2>
+      <p className="desk-muted">Sem campo de e-mail e sem campo de senha.</p>
+      {!configured && <p className="desk-notice">O painel ainda não está conectado ao banco da redação.</p>}
       {aviso && notices[aviso] && <p className="desk-notice">{notices[aviso]}</p>}
       <LoginForm configured={configured}/>
       <Link className="login-return" href="/">← Voltar para o SPN News</Link>
