@@ -35,8 +35,8 @@ export async function transition(_previous:SaveResult,form:FormData):Promise<Sav
 export async function deleteDraft(form:FormData){
  const{client}=await requireEditor(),id=String(form.get('id')??''),current=await getDraft(id);if(!current)redirect('/admin/materias');
  if(current.published_at)throw new Error('Matérias que já foram publicadas devem ser retiradas do site, preservando o histórico editorial.');
- const{error}=await client.from('spn_drafts').delete().eq('id',id).eq('state','draft');if(error)throw new Error('Não foi possível excluir o rascunho.');
- revalidatePath('/admin');redirect('/admin/materias');
+ const{error}=await client.from('spn_drafts').delete().eq('id',id);if(error)throw new Error('Não foi possível excluir a matéria.');
+ revalidatePath('/admin');revalidatePath('/admin/materias');redirect('/admin/materias');
 }
 export async function saveSlot(form:FormData){
  const{client}=await requireEditor(),day=Number(form.get('day')),subject=String(form.get('subject')??'').trim(),editorId=String(form.get('editorId')??''),kind=String(form.get('kind')??''),count=Number(form.get('count'));
