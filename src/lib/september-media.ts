@@ -363,5 +363,19 @@ export const septemberPhotos: Record<string, NewsPhoto> = {
     "rightsReserved": true,
     "width": 1600,
     "height": 2400
+  },
+  "jojo": {
+    "path": "https://eiken-anime.jp/wp-content/uploads/2026/09/20261004_9099_1.jpg",
+    "width": 640,
+    "height": 360,
+    "alt": "Cena de Sazae-san em material oficial da Eiken.",
+    "caption": "Cena de Sazae-san, em divulgação do próximo programa publicada em setembro. Imagem ilustrativa; não corresponde à semana de medição da audiência.",
+    "creator": "© Museu Machiko Hasegawa / Eiken",
+    "sourceName": "Sazae-san · portal oficial",
+    "sourceUrl": "https://eiken-anime.jp/sazaesan/",
+    "originalUrl": "https://eiken-anime.jp/wp-content/uploads/2026/09/20261004_9099_1.jpg",
+    "license": "Direitos reservados",
+    "licenseUrl": "https://eiken-anime.jp/sazaesan/",
+    "rightsReserved": true
   }
 };
