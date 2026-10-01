@@ -47,3 +47,7 @@ As 31 matérias de setembro foram importadas, com as datas originais de publica�
 
 Validação: `pnpm lint`, `pnpm typecheck`, `pnpm build`; `node scripts/verify-editorial.cjs` valida entrada editorial e preservação de referências. `supabase/editorial-security-check.sql` documenta o teste de isolamento e publicação, em transação com rollback. Nunca use credenciais reais em testes.
 
+
+### Redes sociais
+Em /admin/redes-sociais, editores autenticados podem selecionar uma reportagem publicada, editar e copiar sua legenda e seu link, e abrir a imagem com os créditos. A edição é temporária e não publica nas redes. Perfis oficiais e autorização das plataformas ainda precisam ser configurados; não há postagem automática ativa.
+
