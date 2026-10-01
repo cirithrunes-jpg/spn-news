@@ -50,7 +50,8 @@ alter table public.spn_publications enable row level security;
 alter table public.spn_schedule enable row level security;
 alter table public.spn_settings enable row level security;
 alter table public.spn_audit enable row level security;
-grant select,insert,update on public.spn_drafts,public.spn_publications,public.spn_schedule,public.spn_settings to authenticated;
+grant select,insert,update,delete on public.spn_drafts to authenticated;
+grant select,insert,update on public.spn_publications,public.spn_schedule,public.spn_settings to authenticated;
 grant select on public.spn_publications to anon;
 grant select on public.spn_audit to authenticated;
 create policy spn_draft_admin on public.spn_drafts for all to authenticated
@@ -110,5 +111,6 @@ alter policy spn_public_admin_insert on public.spn_publications with check((sele
 alter policy spn_audit_admin on public.spn_audit using((select (auth.jwt()->>'is_anonymous')::boolean) is false and exists(select 1 from public.spn_members where user_id=(select auth.uid()) and role='admin'));
 revoke all on public.spn_members,public.spn_drafts,public.spn_schedule,public.spn_settings,public.spn_audit,public.spn_publications from anon,authenticated;
 grant select on public.spn_members,public.spn_audit to authenticated;
-grant select,insert,update on public.spn_drafts,public.spn_publications,public.spn_schedule,public.spn_settings to authenticated;
+grant select,insert,update,delete on public.spn_drafts to authenticated;
+grant select,insert,update on public.spn_publications,public.spn_schedule,public.spn_settings to authenticated;
 grant select on public.spn_publications to anon;
