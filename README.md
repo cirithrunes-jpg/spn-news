@@ -65,3 +65,8 @@ Giro SPN com filtros, roteiros de vídeos em /videos, seleção em /listas, apre
 ## Primeira edição real
 
 Em 1 de outubro de 2026, a Home passou a destacar três resumos de comunicados oficiais em `/atualizacoes` e `/noticia/[slug]`. Dados e fontes em `src/lib/news.ts`. Datas de anúncio e de evento, escopo regional e apoio de IA são explicitados. Não há atualização automática. As nove matérias de `/materia` continuam fictícias. Categorias e busca separam notícias de exemplos. O bloqueio de indexação permanece durante a construção; o sitemap inclui notícias reais somente quando SITE_INDEXABLE=true.
+
+## Correções e direitos de imagem
+
+Todas as páginas de matéria e notícia incluem orientação para pedidos de correção ou contestação. Defina EDITORIAL_CONTACT_EMAIL na Vercel para ativar um link mailto com título e URL da matéria. Sem um endereço válido, o canal aparece explicitamente em configuração. Não há formulário, armazenamento, envio automático ou garantia de prazo de resposta. É necessário redeploy após configurar o endereço. Esse canal não substitui licença ou autorização para publicar imagens.
+
