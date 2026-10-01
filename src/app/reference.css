@@ -17,4 +17,5 @@ body{background:linear-gradient(#fff,#f5f6f8);font-size:14px}.wrap{max-width:132
 
 .editorial-contact small{display:block;margin-top:16px;font-size:12px;line-height:1.5;color:#555}.editorial-contact .button{white-space:normal}
 .article-body .editorial-contact{background:transparent;border:0;border-top:1px solid #ddd;padding:16px 0;margin:32px 0 20px;color:#666}.article-body .editorial-contact h2{font-size:15px;line-height:1.4;margin:0 0 8px}.article-body .editorial-contact p{font-size:12px;line-height:1.6;margin:0 0 8px}.article-body .editorial-contact small{font-size:11px;line-height:1.5;margin-top:8px}.article-body .editorial-contact .button{font-size:12px;background:transparent;color:#555;border:0;padding:0;text-decoration:underline;box-shadow:none}
+.article-body section.news-context{background:transparent;border:0;border-top:1px solid #ddd;padding:16px 0;margin:28px 0 20px;color:#666}.article-body section.news-context h2{font-size:15px;line-height:1.4;margin:0 0 8px}.article-body section.news-context p,.article-body section.news-context>a:not(.button){font-size:12px;line-height:1.6;margin:0 0 8px}
 
