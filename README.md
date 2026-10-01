@@ -26,10 +26,10 @@ pnpm start
 
 1. Importe `cirithrunes-jpg/spn-news` em https://vercel.com/new.
 2. Framework: **Next.js**. Root Directory: **raiz do repositório**. Use o lockfile pnpm e o build padrão (`pnpm build`). Node.js: **24.x** (22.x também compatível).
-3. Defina `NEXT_PUBLIC_SITE_URL` com a URL HTTPS atribuída pela Vercel ou seu domínio final. Mantenha `SITE_INDEXABLE=false` durante a demonstração.
+3. A URL canônica usa automaticamente o domínio de produção da Vercel. Para substituir, defina `NEXT_PUBLIC_SITE_URL` com seu domínio HTTPS final. Mantenha `SITE_INDEXABLE=false` durante a demonstração.
 4. Faça o deploy e abra a URL gerada. Atualize a URL canônica e redeploy se o domínio mudar.
 
-O MVP não requer banco, chaves de API, storage, cron ou serviços pagos para funcionar. Não existe deploy público até que o projeto seja importado e publicado na conta Vercel.
+O MVP não requer banco, chaves de API, storage, cron ou serviços pagos para funcionar. Demonstração publicada em https://spn-news.vercel.app em 1 de outubro de 2026. Novos commits em main acionam o deploy pela integração GitHub/Vercel.
 
 ## O que está implementado
 
