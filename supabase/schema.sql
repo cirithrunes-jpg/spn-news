@@ -114,3 +114,24 @@ grant select on public.spn_members,public.spn_audit to authenticated;
 grant select,insert,update,delete on public.spn_drafts to authenticated;
 grant select,insert,update on public.spn_publications,public.spn_schedule,public.spn_settings to authenticated;
 grant select on public.spn_publications to anon;
+
+
+-- Configuração pública da página inicial. Apenas quantidades de exibição; nenhum dado privado.
+create table if not exists public.spn_home_settings (
+ id boolean primary key default true check(id),
+ frequency_count integer not null default 5 check(frequency_count between 1 and 12),
+ side_highlights_count integer not null default 3 check(side_highlights_count between 1 and 6),
+ giro_count integer not null default 6 check(giro_count between 1 and 12),
+ latest_count integer not null default 6 check(latest_count between 1 and 12),
+ lists_count integer not null default 6 check(lists_count between 1 and 12),
+ updated_at timestamptz not null default now()
+);
+insert into public.spn_home_settings(id) values(true) on conflict(id) do nothing;
+alter table public.spn_home_settings enable row level security;
+revoke all on public.spn_home_settings from public,anon,authenticated;
+grant select on public.spn_home_settings to anon,authenticated;
+grant update on public.spn_home_settings to authenticated;
+create policy spn_home_settings_public_read on public.spn_home_settings for select to anon,authenticated using(true);
+create policy spn_home_settings_admin_update on public.spn_home_settings for update to authenticated
+using((select (auth.jwt()->>'is_anonymous')::boolean) is false and exists(select 1 from public.spn_members where user_id=(select auth.uid()) and role='admin'))
+with check((select (auth.jwt()->>'is_anonymous')::boolean) is false and exists(select 1 from public.spn_members where user_id=(select auth.uid()) and role='admin'));
