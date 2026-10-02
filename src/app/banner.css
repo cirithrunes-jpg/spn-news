@@ -1,31 +1,35 @@
-/* O layout público continua o clássico; estas regras só acomodam o novo banner SPN. */
+/* Banner SPN no layout clássico. Fallback em background + imagem visível para evitar falhas de cache/renderização. */
 .site-header .masthead{
-  height:auto;
+  height:180px;
   max-width:1320px;
   margin:0 auto;
   padding:0;
   overflow:hidden;
+  position:relative;
+  background:#080b13 url('/brand/masthead.webp?v=20261001-2') center/cover no-repeat;
 }
 .site-header .brand-banner{
   display:block;
   width:100%;
-  height:auto;
+  height:100%;
   background:none;
   line-height:0;
 }
 .spn-site-banner{
-  display:block;
-  width:100%;
-  height:auto;
-  object-fit:contain;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover;
+  object-position:center;
+  opacity:1!important;
+  visibility:visible!important;
 }
 @media(max-width:920px){
-  .site-header .masthead{height:auto}
+  .site-header .masthead{height:150px}
 }
 @media(max-width:760px){
-  .site-header .masthead{height:auto}
-  .site-header .brand-banner{background:none}
+  .site-header .masthead{height:145px;background-size:cover}
 }
 @media(max-width:540px){
-  .site-header .masthead{height:auto}
+  .site-header .masthead{height:126px}
 }
