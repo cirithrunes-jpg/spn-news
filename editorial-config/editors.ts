@@ -35,6 +35,6 @@ export const getEditorByByline = (byline?: string) => {
   if (!byline) return undefined;
   const normalized = normalizeByline(byline);
   return editors.find(editor =>
-    editor.aliases.some(alias => normalized === normalizeByline(alias))
+    editor.aliases.some(alias => normalized.includes(normalizeByline(alias)))
   );
 };
