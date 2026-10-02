@@ -45,3 +45,21 @@ export async function saveSlot(form:FormData){
  revalidatePath('/admin/calendario');redirect('/admin/calendario?salvo=1');
 }
 
+
+export async function saveHomeLayout(form:FormData){
+ const{client}=await requireEditor();
+ const read=(name:string,min:number,max:number,fallback:number)=>{const value=Number(form.get(name));return Number.isInteger(value)?Math.min(max,Math.max(min,value)):fallback;};
+ const values={
+  frequency_count:read('frequency_count',1,12,5),
+  side_highlights_count:read('side_highlights_count',1,6,3),
+  giro_count:read('giro_count',1,12,6),
+  latest_count:read('latest_count',1,12,6),
+  lists_count:read('lists_count',1,12,6),
+  updated_at:new Date().toISOString(),
+ };
+ const{error}=await client.from('spn_home_settings').update(values).eq('id',true);
+ if(error)throw new Error('Não foi possível salvar a configuração da página inicial.');
+ revalidatePath('/');
+ revalidatePath('/admin/tela-inicial');
+ redirect('/admin/tela-inicial?salvo=1');
+}
