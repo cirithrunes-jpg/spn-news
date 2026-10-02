@@ -1,37 +1,29 @@
-/* Mantém o layout clássico e exibe o banner completo, sem cortes. */
+/* Banner SPN: usa o tamanho natural da imagem para evitar sumiço/cortes. */
 .site-header .masthead{
   width:100%;
   max-width:1320px;
-  height:auto;
-  aspect-ratio:3 / 1;
+  height:auto!important;
+  aspect-ratio:auto!important;
   margin:0 auto;
   padding:0;
-  overflow:hidden;
+  overflow:visible;
   position:relative;
-  background:#080b13;
+  background:#080b13 url('/brand/spn-news-banner.webp') center/contain no-repeat;
 }
 .site-header .brand-banner{
   display:block;
   width:100%;
-  height:100%;
-  background:none!important;
+  height:auto!important;
+  background:transparent!important;
   line-height:0;
 }
 .spn-site-banner{
   display:block!important;
   width:100%!important;
-  height:100%!important;
+  max-width:100%!important;
+  height:auto!important;
   object-fit:contain!important;
   object-position:center!important;
   opacity:1!important;
   visibility:visible!important;
-}
-@media(max-width:920px){
-  .site-header .masthead{height:auto;aspect-ratio:3 / 1}
-}
-@media(max-width:760px){
-  .site-header .masthead{height:auto;aspect-ratio:3 / 1}
-}
-@media(max-width:540px){
-  .site-header .masthead{height:auto;aspect-ratio:3 / 1}
 }
