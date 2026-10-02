@@ -87,3 +87,5 @@ footer{margin-top:50px}
  .side-story{min-height:230px}
  .home-layout-settings .desk-form-grid{grid-template-columns:1fr}
 }
+
+.desk-brand-logo{width:46px;height:46px;object-fit:cover;border-radius:8px;box-shadow:0 5px 18px #0003;flex:0 0 auto}
