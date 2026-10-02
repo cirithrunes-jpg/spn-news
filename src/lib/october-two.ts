@@ -554,7 +554,102 @@ export const rayearthReturns: NewsItem = {
   ]
 };
 
+
+export const avengersDoomsdayLeaks: NewsItem = {
+  slug: 'vingadores-doutor-destino-vazamentos-ia-roman-marwell',
+  title: 'Vingadores: Doutor Destino vazou de novo — e agora nem o vazamento dá para confiar',
+  excerpt: 'Entre material real, rumores e recriações por IA, Doomsday virou o filme em que até o spoiler precisa passar por perícia.',
+  category: 'filmes',
+  kind: 'news',
+  byline: 'Fernando Valerious',
+  historicalDate: '2026-10-02',
+  publishedAt: '2026-10-02T21:44:00Z',
+  modifiedAt: '2026-10-02T21:44:00Z',
+  context: 'Matéria publicada em 2 de outubro de 2026. O SPN não reproduz trechos vazados do filme e separa material oficial, vazamentos reportados e recriações feitas por fãs com inteligência artificial.',
+  source: {
+    name: 'The Walt Disney Company — D23 2026: Avengers: Doomsday',
+    url: 'https://thewaltdisneycompany.com/news/d23-2026-disney-entertainment-showcase/',
+    date: '2026-08-14'
+  },
+  sources: [
+    {
+      name: 'The Walt Disney Company — D23 2026: Avengers: Doomsday',
+      url: 'https://thewaltdisneycompany.com/news/d23-2026-disney-entertainment-showcase/',
+      date: '2026-08-14',
+      note: 'Confirma sinopse oficial, elenco, diretores e estreia em 18 de dezembro de 2026.'
+    },
+    {
+      name: 'The Walt Disney Company — Marvel Studios at San Diego Comic-Con 2026',
+      url: 'https://thewaltdisneycompany.com/news/marvel-studios-comic-con-2026/',
+      date: '2026-07-25',
+      note: 'Detalha a apresentação de Doomsday no Hall H e o material exibido exclusivamente ao público do evento.'
+    },
+    {
+      name: 'Graphika — Marvel Moved Fast. The Leak Moved Faster.',
+      url: 'https://www.graphika.com/situation-briefs/marvel-moved-fast-the-leak-moved-faster',
+      date: '2026-07-31',
+      note: 'Analisa a velocidade de circulação de um vazamento de Doomsday após a Comic-Con.'
+    },
+    {
+      name: 'Roman Marwell Recut — Fan AI Concept',
+      url: 'https://www.youtube.com/watch?v=JabbnbqHIRk',
+      date: '2026-08-11',
+      note: 'Exemplo de recriação feita por fã com IA. O próprio criador informa que não se trata de trailer oficial nem de vazamento real.'
+    },
+    {
+      name: 'The Walt Disney Company — Endgame: Encore e novo material de Doomsday',
+      url: 'https://thewaltdisneycompany.com/news/russo-brothers-avengers-endgame-doomsday/',
+      date: '2026-09-29',
+      note: 'Fonte oficial sobre o material de Doomsday exibido na nova versão de Avengers: Endgame.'
+    }
+  ],
+  photo: promo(
+    'https://thewaltdisneycompany.com/app/uploads/2026/08/20260814_RH7_7372-1024x684.jpg',
+    'Chris Evans, Robert Downey Jr., Hayley Atwell e Kevin Feige no palco da D23 2026',
+    'Chris Evans, Robert Downey Jr., Hayley Atwell e Kevin Feige apresentaram novo material de Avengers: Doomsday na D23.',
+    'The Walt Disney Company',
+    'https://thewaltdisneycompany.com/news/d23-2026-disney-entertainment-showcase/',
+    'Disney',
+    1024, 684
+  ),
+  inlinePhotos: [
+    {
+      ...promo(
+        'https://thewaltdisneycompany.com/app/uploads/2026/07/2287653968-1024x727.jpg',
+        'Elenco de Avengers: Doomsday no palco da San Diego Comic-Con 2026',
+        'Anthony Mackie, Danny Ramirez, Robert Downey Jr. e Pedro Pascal durante a apresentação de Doomsday na Comic-Con.',
+        'The Walt Disney Company',
+        'https://thewaltdisneycompany.com/news/marvel-studios-comic-con-2026/',
+        'Disney',
+        1024, 727
+      ),
+      afterParagraph: 2
+    },
+    {
+      ...promo(
+        'https://i.ytimg.com/vi/JabbnbqHIRk/maxresdefault.jpg',
+        'Miniatura de um conceito de Avengers: Doomsday criado por fã com inteligência artificial',
+        'Exemplo de conteúdo sintético de Roman Marwell Recut. A imagem NÃO é cena oficial da Marvel nem vazamento confirmado.',
+        'Roman Marwell Recut / conteúdo gerado com IA',
+        'https://www.youtube.com/watch?v=JabbnbqHIRk',
+        'YouTube',
+        1280, 720
+      ),
+      afterParagraph: 4
+    }
+  ],
+  body: [
+    'Se acompanhar Vingadores: Doutor Destino já parecia trabalho de investigador, a inteligência artificial resolveu colocar uma lupa em cima da lupa. O filme estreia em 18 de dezembro e a Marvel já confirmou Robert Downey Jr. como Victor von Doom, Chris Evans como Steve Rogers e um elenco que atravessa três universos. O problema é descobrir, no meio do que circula nas redes, o que veio realmente do estúdio.',
+    'Durante a San Diego Comic-Con, material exclusivo exibido no Hall H acabou vazando. Segundo uma análise da Graphika, um dos clipes chegou a cerca de 1 milhão de visualizações em aproximadamente 40 minutos, mesmo partindo de uma conta pequena e continuando a se espalhar depois da remoção do post original. A Marvel tentou fechar a torneira. A internet respondeu trazendo um caminhão-pipa.',
+    'Desde então, fotos, descrições de cenas e supostos trechos aparecem em ritmo constante. Alguns podem ter origem em material real; outros são montagens, rumores ou versões modificadas. E aí entra a parte mais curiosa: hoje uma imagem ruim não prova mais nada. Pode ser gravação escondida, efeito ainda inacabado ou alguém em casa pedindo para a IA “deixar com cara de vazamento de 2007”.',
+    'Um exemplo é o canal Roman Marwell Recut. O criador se apresenta como editor autodidata de vídeos com IA e publica conceitos inspirados em Doomsday. Os títulos às vezes brincam com palavras como “trailer” e “leak”, mas as próprias descrições deixam claro que são fan concepts, não material oficial da Marvel. Alguns desses vídeos alcançaram centenas de milhares — e até mais de 1 milhão — de visualizações.',
+    'Isso cria uma situação inédita para quem acompanha spoilers: o vazamento pode ser real, pode ser falso ou pode ser uma reconstrução artificial baseada na descrição de um vazamento real. Basicamente, o multiverso chegou primeiro ao departamento de boatos.',
+    'Para quem prefere não jogar bingo de pixel, existe um caminho oficial: a Disney já divulgou um special look de Doomsday e colocou novas imagens do filme na reexibição Avengers: Endgame — Encore. Aqui no SPN, a regra continua simples: rumor é rumor, IA é IA e confirmação só vira confirmação quando existe fonte para sustentar.'
+  ]
+};
+
 export const octoberSecond: NewsItem[] = [
+  avengersDoomsdayLeaks,
   mummyFour,
   starWarsWatts,
   ps5Qssr,
