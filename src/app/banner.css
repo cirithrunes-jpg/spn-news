@@ -1,0 +1,31 @@
+/* O layout público continua o clássico; estas regras só acomodam o novo banner SPN. */
+.site-header .masthead{
+  height:auto;
+  max-width:1320px;
+  margin:0 auto;
+  padding:0;
+  overflow:hidden;
+}
+.site-header .brand-banner{
+  display:block;
+  width:100%;
+  height:auto;
+  background:none;
+  line-height:0;
+}
+.spn-site-banner{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+}
+@media(max-width:920px){
+  .site-header .masthead{height:auto}
+}
+@media(max-width:760px){
+  .site-header .masthead{height:auto}
+  .site-header .brand-banner{background:none}
+}
+@media(max-width:540px){
+  .site-header .masthead{height:auto}
+}
