@@ -1,11 +1,12 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowUpRight, Play, Tv, Gamepad2, Disc3, Sparkles, Clapperboard, Radio, MonitorPlay } from 'lucide-react';
 import { Article, getCategory } from '@/lib/content';
 import { mediaCredits } from '@/lib/media';
 import { brandLogoDataUri } from '@/lib/brand-logo';
 const icons={cinema:Clapperboard,series:MonitorPlay,games:Gamepad2,music:Disc3,anime:Sparkles,stars:Radio,retro:Tv};
 export function Mascot({popcorn=false}:{popcorn?:boolean}){return <span className={'tv-mascot '+(popcorn?'with-popcorn':'')} aria-hidden="true"><span className="tv-antenna"/><span className="tv-shell"><span className="tv-screen"><Play fill="white" stroke="white"/></span><span className="tv-controls">● ▬ ●</span></span>{popcorn&&<span className="popcorn">🍿</span>}</span>}
-export function Logo(){return <Link href="/" className="logo official-logo" aria-label="SPN News — início"><img src={brandLogoDataUri} alt="Canal Só Para Nerds"/><span className="wordmark">SPN<em>NEWS</em><small>O MUNDO POP LEVADO A SÉRIO. MAIS OU MENOS.</small></span></Link>}
+export function Logo(){return <Link href="/" className="logo official-logo" aria-label="SPN News — início"><Image src={brandLogoDataUri} alt="Canal Só Para Nerds" width={256} height={256} unoptimized/><span className="wordmark">SPN<em>NEWS</em><small>O MUNDO POP LEVADO A SÉRIO. MAIS OU MENOS.</small></span></Link>}
 export function Artwork({art,large=false}:{art:string;large?:boolean}){const Icon=icons[art as keyof typeof icons]||Tv;return <div className={'art art-'+art+(large?' art-large':'')} aria-hidden="true"><div className="art-orbit"/><div className="art-grid"/><Icon className="art-icon" strokeWidth={1.2}/><span className="art-word">{art==='anime'?'FORA DOS QUADROS':art==='retro'?'APERTE O PLAY':''}</span></div>}
 export function PhotoCredit({art}:{art:string}){const credit=mediaCredits[art];return <span className="photo-credit">{credit?.kind==='photo'?<>Foto: {credit.creator} · <a href={credit.sourceUrl} target="_blank" rel="noopener noreferrer">{credit.sourceName}</a> · <a href={credit.licenseUrl} target="_blank" rel="noopener noreferrer">{credit.licenseName}</a>{credit.modification&&' · '+credit.modification}</>:<>Ilustração fictícia: IA / SPN News · origem: acervo demonstrativo SPN</>}</span>}
 export function CategoryTag({slug}:{slug:string}){return <span className={'category-tag tag-'+slug}>{getCategory(slug)?.name}</span>}
