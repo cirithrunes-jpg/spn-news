@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Home, Menu, X, Search, Instagram } from 'lucide-react';
 import { useState } from 'react';
@@ -10,7 +11,7 @@ import { brandLogoDataUri } from '@/lib/brand-logo';
 export default function Header() {
  const [open,setOpen]=useState(false); const path=usePathname();
  return <><div className="demo-bar">SPN NEWS <span>O mundo pop levado a sério. Mais ou menos.</span></div><header className="site-header">
- <div className="masthead"><Link href="/" className="brand-banner" aria-label="SPN News — início"><img src={brandLogoDataUri} className="brand-official-logo" alt="Canal Só Para Nerds"/><span className="brand-copy"><strong>SPN NEWS</strong><small>Notícias, cultura pop e aquele comentário que faltava.</small></span></Link></div>
+ <div className="masthead"><Link href="/" className="brand-banner" aria-label="SPN News — início"><Image src={brandLogoDataUri} className="brand-official-logo" alt="Canal Só Para Nerds" width={256} height={256} unoptimized/><span className="brand-copy"><strong>SPN NEWS</strong><small>Notícias, cultura pop e aquele comentário que faltava.</small></span></Link></div>
  <div className="nav-shell"><div className="wrap nav-tools">
  <Link href="/" className="home-tab" aria-label="Início"><Home size={19} fill="currentColor" /></Link>
  <button className="menu-button" onClick={()=>setOpen(!open)} aria-expanded={open} aria-controls="main-nav" aria-label={open?'Fechar menu':'Abrir menu'}>{open?<X/>:<Menu/>}</button>
