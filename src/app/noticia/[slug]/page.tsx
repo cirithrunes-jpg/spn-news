@@ -7,6 +7,7 @@ import { news, editionLabel, newsPublishedAt } from '@/lib/news';
 import { publishedArticle } from '@/lib/published-news';
 import { getCategory } from '@/lib/content';
 import { siteUrl } from '@/lib/site';
+import { getEditorByByline } from '../../../../editorial-config/editors';
 export function generateStaticParams() { return news.map(item => ({ slug: item.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params; const item = await publishedArticle(slug);
@@ -14,13 +15,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 export default async function NewsPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params; const item = await publishedArticle(slug); if (!item) notFound();
+  const byline = item.byline ?? 'Redação SPN';
+  const editor = getEditorByByline(byline);
   const sources = item.sources ?? [item.source];
   const publishedAt = item.publishedAt ?? newsPublishedAt;
-  const schema = { '@context': 'https://schema.org', '@type': item.kind === 'news' ? 'NewsArticle' : 'Article', headline: item.title, description: item.excerpt, datePublished: publishedAt, dateModified: item.modifiedAt ?? publishedAt, temporalCoverage: item.historicalDate, author: { '@type': 'Organization', name: 'SPN News — texto com apoio de IA' }, publisher: { '@type': 'Organization', name: 'SPN News' }, mainEntityOfPage: new URL('/noticia/' + slug, siteUrl).href, image: item.photo ? new URL(item.photo.path, siteUrl).href : undefined, citation: sources.map(source => source.url), articleSection: getCategory(item.category)?.name, inLanguage: 'pt-BR', isAccessibleForFree: true };
+  const schema = { '@context': 'https://schema.org', '@type': item.kind === 'news' ? 'NewsArticle' : 'Article', headline: item.title, description: item.excerpt, datePublished: publishedAt, dateModified: item.modifiedAt ?? publishedAt, temporalCoverage: item.historicalDate, author: editor ? { '@type': 'Person', name: editor.name } : { '@type': 'Organization', name: 'SPN News — texto com apoio de IA' }, publisher: { '@type': 'Organization', name: 'SPN News' }, mainEntityOfPage: new URL('/noticia/' + slug, siteUrl).href, image: item.photo ? new URL(item.photo.path, siteUrl).href : undefined, citation: sources.map(source => source.url), articleSection: getCategory(item.category)?.name, inLanguage: 'pt-BR', isAccessibleForFree: true };
   return <main id="conteudo" className="wrap page-space">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
     <div className="breadcrumbs"><Link href="/">Início</Link> / <Link href="/atualizacoes">Matérias</Link></div>
-    <article><header className="article-heading"><span className="eyebrow">{getCategory(item.category)?.name} · {({news:'NOTÍCIA',guide:'GUIA',feature:'CULTURA & CONTEXTO',opinion:'OPINIÃO',data:'DADOS'}[item.kind ?? 'news'])}</span><h1>{item.title}</h1><p>{item.excerpt}</p><div className="byline"><strong>{item.byline ?? 'Redação SPN'}</strong><time dateTime={item.historicalDate ?? newsPublishedAt}>{editionLabel(item.historicalDate ?? publishedAt.slice(0,10))}</time></div></header>
+    <article><header className="article-heading"><span className="eyebrow">{getCategory(item.category)?.name} · {({news:'NOTÍCIA',guide:'GUIA',feature:'CULTURA & CONTEXTO',opinion:'OPINIÃO',data:'DADOS'}[item.kind ?? 'news'])}</span><h1>{item.title}</h1><p>{item.excerpt}</p><div className="byline author-byline">{editor&&<Image src={editor.avatar} alt={editor.name} width={48} height={48} className="author-avatar"/>}<div className="author-byline-copy"><strong>{byline}</strong>{editor&&<span>{editor.role}</span>}</div><time dateTime={item.historicalDate ?? newsPublishedAt}>{editionLabel(item.historicalDate ?? publishedAt.slice(0,10))}</time></div></header>
     <div className="article-body">
       <aside className="news-context"><strong>Data e contexto</strong><p>{item.context}</p></aside>
       {item.photo && <figure className="historical-photo"><Image unoptimized={item.photo.path.startsWith('https://')} src={item.photo.path} alt={item.photo.alt} width={item.photo.width ?? 1280} height={item.photo.height ?? 945} priority sizes="(max-width: 800px) 100vw, 760px" /><figcaption>{item.photo.caption}<span className="photo-credit">Foto: {item.photo.creator} · <a href={item.photo.sourceUrl} target="_blank" rel="noopener noreferrer">{item.photo.sourceName ?? 'Wikimedia Commons'}</a> · <a href={item.photo.originalUrl} target="_blank" rel="noopener noreferrer">Origem da foto</a> · <a href={item.photo.licenseUrl} target="_blank" rel="noopener noreferrer">{item.photo.license}</a>{item.photo.rightsReserved ? ' · Uso editorial para ilustrar a produção; direitos pertencem aos respectivos titulares.' : ' · Versão reduzida, sem recorte; fotografia redistribuída sob a mesma licença.'}</span></figcaption></figure>}
