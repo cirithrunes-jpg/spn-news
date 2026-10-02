@@ -9,3 +9,19 @@
 
 /* Leitura longa e monetização editorial */
 .article-flow>p{font-size:16px;line-height:1.9;margin:22px 0}.inline-photo{margin:34px 0}.inline-photo img{width:100%;height:auto;max-height:620px;object-fit:cover}.article-ad{margin:38px 0;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}.article-ad>span{display:block;font-size:7px;letter-spacing:1.8px;color:var(--muted);margin-bottom:9px}.article-ad-slot{min-height:120px;display:grid;place-items:center;background:#efeee8;color:var(--muted);font-size:10px;letter-spacing:1px;text-transform:uppercase}@media(max-width:760px){.article-flow>p{font-size:15px;line-height:1.85}.article-ad{margin:30px 0}.article-ad-slot{min-height:100px}}
+
+/* Retratos da redação SPN */
+.desk-editor-card{overflow:hidden}
+.desk-editor-portrait{height:230px;margin:-18px -18px 18px;background:linear-gradient(180deg,#f5f5f5,#ececec);display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.desk-editor-portrait img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.author-byline{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.author-avatar{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:center 24%;background:#f0f0f0;border:2px solid #fff;box-shadow:0 0 0 1px #d8d8d8}
+.author-byline-copy{display:flex;flex-direction:column;gap:2px}
+.author-byline-copy strong{line-height:1.1}
+.author-byline-copy span{font-size:11px;color:var(--muted);font-weight:600}
+.author-byline time{margin-left:auto}
+@media(max-width:540px){
+  .desk-editor-portrait{height:260px}
+  .author-byline{align-items:center}
+  .author-byline time{width:100%;margin-left:57px}
+}
