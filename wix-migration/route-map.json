@@ -1,0 +1,29 @@
+{
+  "source": "https://spn-news.vercel.app",
+  "staticSeeds": [
+    "/",
+    "/sobre",
+    "/atualizacoes",
+    "/listas",
+    "/videos",
+    "/podcast",
+    "/categoria/filmes",
+    "/categoria/series-streaming",
+    "/categoria/games",
+    "/categoria/musica",
+    "/categoria/famosos",
+    "/categoria/animes-hqs",
+    "/categoria/cultura-pop"
+  ],
+  "crawlDiscovered": [
+    "/noticia/*"
+  ],
+  "excluded": [
+    "/admin/*",
+    "/api/*",
+    "/_next/data/*"
+  ],
+  "needsAdaptation": [
+    "/busca?q=*"
+  ]
+}\n
