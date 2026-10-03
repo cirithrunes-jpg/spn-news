@@ -1,0 +1,57 @@
+name: Prepare Wix static export
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/wix-static-export.yml"
+      - "scripts/wix-export.mjs"
+      - "scripts/wix-preflight.mjs"
+      - "wix-migration/**"
+      - "package.json"
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Export public SPN snapshot
+        env:
+          SPN_SOURCE_URL: https://spn-news.vercel.app
+          WIX_EXPORT_DIR: .wix-export
+          WIX_MAX_PAGES: "250"
+        run: node scripts/wix-export.mjs
+
+      - name: Validate Wix upload limits
+        env:
+          WIX_EXPORT_DIR: .wix-export
+        run: node scripts/wix-preflight.mjs
+
+      - name: Package Wix upload
+        run: |
+          cd .wix-export
+          zip -r ../spn-wix-static.zip .
+          cd ..
+          ls -lh spn-wix-static.zip
+
+      - name: Upload Wix-ready package
+        uses: actions/upload-artifact@v4
+        with:
+          name: spn-wix-static
+          path: |
+            spn-wix-static.zip
+            .wix-export/wix-export-manifest.json
+          if-no-files-found: error
+          retention-days: 7
