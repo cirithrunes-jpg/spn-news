@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { NewsImage } from '@/components/news-image';
 import { GeekQuiz } from '@/components/geek-quiz';
-import { RunningLogo } from '@/components/running-logo';
 import { getGeekEdition } from '@/lib/geek-quiz';
 import Link from 'next/link';
 import { ArrowRight, Flame, Radio, Clapperboard, MonitorPlay, Gamepad2, Headphones, Star, Sparkles, Orbit, List } from 'lucide-react';
@@ -29,7 +28,7 @@ export default async function Home() {
  const side=news.filter(n=>n.slug!==hero.slug).slice(0,home.side_highlights_count);
  const picks=news.filter(n=>n.kind==='opinion').slice(0,home.lists_count);
 
- return <main id="conteudo" className="home-page"><RunningLogo/><div className="wrap">
+ return <main id="conteudo" className="home-page"><div className="wrap">
  <section className="hot-strip" aria-label="Seleção editorial"><strong><Flame fill="currentColor"/>NA FREQUÊNCIA!</strong>{news.slice(0,home.frequency_count).map((n,i)=><Link href={'/noticia/'+n.slug} key={n.slug}><b>{i+1}</b><span>{n.title}</span></Link>)}</section>
 
  <section className="hero-grid" aria-label="Destaques SPN"><div className="hero-feature"><article className="hero-main">{hero.photo&&<NewsImage className="real-hero-image" src={hero.photo.path} alt={hero.photo.alt} fill unoptimized={hero.photo.path.startsWith('https://')} priority sizes="(max-width:760px) 100vw, 800px"/>}<div className="hero-shade"/><div className="hero-content"><CategoryTag slug={hero.category}/><h1><Link href={'/noticia/'+hero.slug}>{hero.title}</Link></h1><p>{hero.excerpt}</p><Link className="yellow-button" href={'/noticia/'+hero.slug}>LEIA A MATÉRIA <ArrowRight size={20}/></Link></div></article><Credit item={hero}/></div>
