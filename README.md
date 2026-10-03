@@ -11,6 +11,18 @@ A integração GitHub/Vercel publica novos commits em `main`. Na Vercel: Next.js
 Defina `NEXT_PUBLIC_SITE_URL` para um domínio HTTPS quando quiser substituir a detecção automática do domínio da Vercel. `SITE_INDEXABLE` controla robots e sitemap; está false até a liberação de indexação. Nenhum segredo deve ser versionado.
 `EDITORIAL_CONTACT_EMAIL` pode receber o endereço público da redação quando existir. Vazio, o site informa que o canal está em configuração; não finge receber solicitações.
 
+## Quiz Geek
+
+O antigo banner lateral "Arquivo SPN" foi substituído por um quiz de três perguntas e uma pesquisa de opinião. O arquivo continua disponível nos links "Giro SPN", "Últimas edições" e no rodapé.
+
+`src/lib/geek-quiz.ts` guarda as rodadas verificadas e suas fontes. `getGeekEdition()` troca a rodada a cada três dias a partir de `geekQuizUpdatedAt`; uma nova ID por período impede reaproveitar respostas de uma rodada anterior. A Home e `/api/quiz-geek` são dinâmicas. Uma aba aberta busca a nova edição na virada ou ao voltar a ficar visível, com repetição em caso de falha temporária.
+
+Uma rotina editorial recorrente pode renovar o banco de perguntas: manter três rodadas preparadas, atualizar `geekQuizUpdatedAt` para o instante da renovação e publicar a primeira rodada nova. As demais são uma reserva caso a atualização editorial atrase. Perguntas devem ter uma única resposta correta, sem depender de rumores ou lançamentos não confirmados, e uma fonte primária que sustente a explicação.
+
+Respostas do quiz e a escolha da pesquisa ficam apenas no navegador. Não existe contagem coletiva, coleta de dados pessoais, ranking público nem alegação de representatividade. A pesquisa pode ser alterada. Fontes aparecem junto às explicações. Verifique com `node scripts/verify-geek-quiz.cjs`, além de lint, typecheck e build.
+
+Imagens editoriais usam uma arte neutra SPN quando a fonte externa falha, preservando os créditos originais. A busca inclui texto e seções, ignora acentos e aceita palavras em posições diferentes.
+
 ## Edições de setembro de 2026
 31 matérias individuais cobrem os dias 1–30, com duas matérias no dia 2. Fontes, período dos dados e imagens são identificados. As listas dos dias 5, 10, 23 e 26 têm dez itens e ordem editorial.
 Arquivo em `/atualizacoes`, filtro `?dia=2`, sete categorias, busca por assunto ou editor, listas e páginas em `/noticia/[slug]`.
