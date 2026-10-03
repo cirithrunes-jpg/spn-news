@@ -1,4 +1,8 @@
 # SPN News
+
+### Entrada do logo
+
+Na primeira abertura da página inicial em cada aba, o logo original atravessa a tela correndo, freia e segue adiante em 3,4 segundos. A decoração usa SVG/CSS, mantém a página clicável e respeita a preferência de movimento reduzido. Nenhum serviço externo é necessário. `scripts/render-running-logo.py` exporta uma versão em GIF para reutilização; depende de Pillow.
 Portal editorial em Next.js + TypeScript. **O mundo pop levado a sério. Mais ou menos.**
 
 ## Rodar

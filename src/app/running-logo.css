@@ -1,0 +1,28 @@
+/* A short decoration: no layout shift, focus trap, sound, or blocked clicks. */
+.spn-running-intro{position:fixed;inset:0;z-index:80;overflow:hidden;pointer-events:none;animation:spn-intro-life 3.4s linear both}
+.spn-runner{position:absolute;left:-280px;top:clamp(80px,23vh,230px);width:260px;will-change:transform;animation:spn-run-across 3.4s linear both}
+.spn-runner-art{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 4px 2px #0002)}
+.spn-runner-bubble{position:absolute;z-index:1;left:50%;top:0;transform:translateX(-50%) rotate(-5deg);padding:8px 13px;white-space:nowrap;background:#fffdf6;color:#191919;border:3px solid #191919;border-radius:15px 15px 15px 2px;box-shadow:3px 4px 0 #ff681e;font-family:'Barlow Condensed',Impact,sans-serif;font-size:19px;font-weight:900;line-height:1}
+.spn-runner-late{animation:spn-late-bubble 3.4s linear both}
+.spn-runner-arrived{animation:spn-arrived-bubble 3.4s linear both}
+.spn-runner-body{transform-origin:140px 160px;animation:spn-body-run 3.4s linear both}
+.spn-runner-leg{animation-duration:3.4s;animation-timing-function:linear;animation-fill-mode:both}
+.spn-runner-leg-back{transform-origin:156px 170px;animation-name:spn-step-back}
+.spn-runner-leg-front{transform-origin:125px 170px;animation-name:spn-step-front}
+.spn-runner-arm{animation:spn-arm-pump .24s ease-in-out infinite alternate}
+.spn-runner-arm-back{transform-origin:83px 116px;animation-delay:-.24s}
+.spn-runner-arm-front{transform-origin:201px 118px}
+.spn-runner-dust{transform-origin:65px 226px;animation:spn-dust 3.4s linear both}
+.spn-runner-speed{animation:spn-speed-lines 3.4s linear both}
+@keyframes spn-intro-life{0%{opacity:0}5%,94%{opacity:1}100%{opacity:0}}
+@keyframes spn-run-across{0%{transform:translateX(0)}44%{transform:translateX(calc(50vw + 150px))}52%{transform:translateX(calc(50vw + 177px))}61%,70%{transform:translateX(calc(50vw + 150px))}100%{transform:translateX(calc(100vw + 560px))}}
+@keyframes spn-late-bubble{0%,46%{opacity:1}49%,100%{opacity:0}}
+@keyframes spn-arrived-bubble{0%,50%{opacity:0}54%,73%{opacity:1}78%,100%{opacity:0}}
+@keyframes spn-body-run{0%,10%,20%,30%,40%,80%,90%,100%{transform:translateY(0) rotate(5deg)}5%,15%,25%,35%,45%,75%,85%,95%{transform:translateY(-7px) rotate(8deg)}52%{transform:rotate(-14deg)}61%,70%{transform:rotate(0)}}
+@keyframes spn-step-back{0%,10%,20%,30%,40%,80%,90%,100%{transform:rotate(-28deg)}5%,15%,25%,35%,45%,75%,85%,95%{transform:rotate(28deg)}52%,56%{transform:rotate(35deg)}61%,70%{transform:rotate(0)}}
+@keyframes spn-step-front{0%,10%,20%,30%,40%,80%,90%,100%{transform:rotate(28deg)}5%,15%,25%,35%,45%,75%,85%,95%{transform:rotate(-28deg)}52%,56%{transform:rotate(-48deg)}61%,70%{transform:rotate(0)}}
+@keyframes spn-arm-pump{from{transform:rotate(-12deg)}to{transform:rotate(12deg)}}
+@keyframes spn-dust{0%,44%{opacity:0;transform:scale(.6)}50%{opacity:.95;transform:scale(1)}65%{opacity:0;transform:translateX(-28px) scale(1.4)}100%{opacity:0}}
+@keyframes spn-speed-lines{0%,44%,78%,100%{opacity:1}51%,70%{opacity:0}}
+@media(max-width:600px){.spn-runner{width:195px;top:clamp(76px,24vh,190px)}.spn-runner-bubble{font-size:16px;padding:7px 10px}.spn-runner{left:-247.5px}}
+@media(prefers-reduced-motion:reduce){.spn-running-intro{display:none;animation:none}.spn-running-intro *{animation:none!important}}
