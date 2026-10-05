@@ -9,7 +9,7 @@ export function LoginForm({ configured }: { configured: boolean; reset?: boolean
   return <form action={action} className="desk-form">
     {result.message && <p role="status" className={result.success ? 'desk-success' : 'desk-notice'}>{result.message}</p>}
     <button className="desk-button" disabled={!configured || pending}>
-      {pending ? 'Enviando acesso…' : 'Abrir acesso do ADM →'}
+      {pending ? 'Enviando acesso…' : 'Enviar novo link de acesso →'}
     </button>
   </form>;
 }

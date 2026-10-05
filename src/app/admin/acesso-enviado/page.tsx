@@ -16,9 +16,9 @@ export default async function AccessSentPage({
           ? 'O painel ainda não está conectado corretamente ao banco da redação.'
           : erro === 'envio'
             ? 'Não foi possível enviar o link agora. Tente abrir o painel novamente em instantes.'
-            : 'Abra o e-mail do administrador e toque no link seguro. Ele abrirá o painel diretamente, sem senha.'}
+            : 'Abra a mensagem mais recente no e-mail do administrador e toque no link. Se aparecer uma confirmação, toque em Confirmar e abrir o painel. Links anteriores podem já ter expirado.'}
       </p>
-      <Link className="desk-button" href="/admin">Tentar abrir o painel →</Link>
+      <Link className="desk-button" href="/admin/login">Solicitar outro link →</Link>
       <Link className="login-return" href="/">← Voltar para o SPN News</Link>
     </section>
   </main>;

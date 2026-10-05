@@ -5,6 +5,7 @@ export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
   response.headers.set('Cache-Control', 'private, no-store');
   response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+  response.headers.set('Referrer-Policy', 'no-referrer');
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY) return response;
   const client = createServerClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, {
     cookies: {
@@ -16,6 +17,7 @@ export async function proxy(request: NextRequest) {
         Object.entries(headers ?? {}).forEach(([key, value]) => response.headers.set(key, value));
         response.headers.set('Cache-Control', 'private, no-store');
         response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+        response.headers.set('Referrer-Policy', 'no-referrer');
       },
     },
   });

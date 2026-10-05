@@ -45,7 +45,11 @@ Para uma nova matéria: confira acontecimentos e datas, escreva texto próprio, 
 
 ## Painel da redação
 
-Acesse `/admin`. O painel tem login por e-mail/senha, visão geral, matérias, prévia privada, calendário mensal editável e perfis editoriais. O calendário não é publicado nem incluído no sitemap. Nenhuma conta recebe acesso por metadados enviados pelo navegador.
+Acesse `/admin`. O painel tem login por link enviado ao e-mail do administrador, visão geral, matérias, prévia privada, calendário mensal editável e perfis editoriais. O calendário não é publicado nem incluído no sitemap. Nenhuma conta recebe acesso por metadados enviados pelo navegador.
+
+Abrir `/admin`, `/admin/login` ou o antigo `/admin/auth/request` não envia e-mail. O envio acontece somente pelo botão da página de entrada, com intervalo de um minuto. Erros de link usado, expirado ou aberto sem o verificador PKCE levam a uma orientação na página de entrada, sem enviar outro link automaticamente. `node scripts/verify-admin-access.cjs` verifica a validação de confirmação e os avisos de acesso.
+
+O retorno solicitado é `/admin/auth/callback` no domínio de produção. O callback continua aceitando códigos PKCE e também aceita `token_hash` com `type=email`, encaminhando para `/admin/auth/confirm`, onde a confirmação exige um clique antes de verificar o link. Isso permite configurar um modelo de e-mail sem consumo automático por prévia de mensagens. A configuração de Auth no Supabase é independente da publicação do código: autorize o callback exato e, para o modelo específico do SPN, use `{{ .RedirectTo }}?token_hash={{ .TokenHash }}&type=email`. Como o projeto é compartilhado, preserve os demais retornos e modelos dos outros aplicativos; não substitua globalmente o Site URL ou o modelo sem conferir seu uso. Um retorno para `localhost:3000` em produção indica configuração pendente no provedor.
 
 Configure `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` na Vercel e em `.env.local`. A chave publishable é pública; **não use service-role/secret keys**. O ambiente de produção foi conectado ao projeto Supabase escolhido pelo proprietário. As tabelas SPN usam o prefixo `spn_` e RLS. `supabase/schema.sql` documenta a instalação para um banco novo; não reaplique sobre a instalação existente.
 

@@ -1,38 +1,46 @@
 'use server';
-import { headers } from 'next/headers';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { editorialClient, editorialConfigured } from '@/lib/supabase/server';
 import { siteUrl } from '@/lib/site';
+import { confirmationInput } from '@/lib/admin-access';
 
 export type LoginResult = { message: string; success?: boolean };
 
 const PRIMARY_ADMIN_EMAIL = 'spnerds.oficial@gmail.com';
 
-async function authCallbackUrl() {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get('x-forwarded-host') ?? requestHeaders.get('host');
-  const protocol = requestHeaders.get('x-forwarded-proto') ?? (host?.includes('localhost') ? 'http' : 'https');
-  const origin = host ? `${protocol}://${host}` : siteUrl.origin;
-  return new URL('/admin/auth/callback', origin).href;
+function authCallbackUrl() {
+  return new URL('/admin/auth/callback', siteUrl).href;
 }
 
 export async function requestAdminAccess(_previous: LoginResult, _form: FormData): Promise<LoginResult> {
   if (!editorialConfigured()) return { message: 'O acesso ao painel ainda não está conectado ao banco da redação.' };
-
+  const jar = await cookies();
+  if (jar.get('spn_admin_link_requested')?.value === '1') {
+    return { message: 'Aguarde um minuto antes de solicitar outro link. Abra a mensagem mais recente no e-mail do administrador.' };
+  }
   const client = await editorialClient();
   const { error } = await client.auth.signInWithOtp({
     email: PRIMARY_ADMIN_EMAIL,
     options: {
-      emailRedirectTo: await authCallbackUrl(),
+      emailRedirectTo: authCallbackUrl(),
       shouldCreateUser: false,
     },
   });
 
   if (error) return { message: 'Não foi possível enviar o acesso agora. Tente novamente em instantes.' };
-  return {
-    message: 'Acesso enviado para o e-mail do administrador. Abra a mensagem e toque no link para entrar.',
-    success: true,
-  };
+  jar.set('spn_admin_link_requested', '1', { httpOnly: true, sameSite: 'lax', secure: siteUrl.protocol === 'https:', maxAge: 60, path: '/admin' });
+  redirect('/admin/acesso-enviado');
+}
+
+export async function confirmAdminAccess(form: FormData) {
+  if (!editorialConfigured()) redirect('/admin/login?aviso=config');
+  const input = confirmationInput(String(form.get('token_hash') ?? ''), String(form.get('type') ?? 'email'));
+  if (!input) redirect('/admin/login?aviso=link-invalido');
+  const client = await editorialClient();
+  const { error } = await client.auth.verifyOtp(input);
+  if (error) redirect('/admin/login?aviso=link-invalido');
+  redirect('/admin');
 }
 
 export async function login(_previous: LoginResult, form: FormData): Promise<LoginResult> {
@@ -44,7 +52,7 @@ export async function login(_previous: LoginResult, form: FormData): Promise<Log
   const { error } = await client.auth.signInWithOtp({
     email,
     options: {
-      emailRedirectTo: await authCallbackUrl(),
+      emailRedirectTo: authCallbackUrl(),
       shouldCreateUser: false,
     },
   });
