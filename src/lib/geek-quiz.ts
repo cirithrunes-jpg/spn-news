@@ -17,45 +17,45 @@ export type GeekEdition = { id: string; round: GeekRound; startsAt: string; next
 
 // The recurring editorial task renews this bank. Prepared rounds keep the
 // three-day rotation working even when an editorial refresh is delayed.
-export const geekQuizUpdatedAt = '2026-10-06T12:00:00Z';
+export const geekQuizUpdatedAt = '2026-10-09T12:00:00Z';
 export const geekQuizIntervalDays = 3;
-const wonderWoman = { name: 'DC · perfil oficial da Mulher-Maravilha', url: 'https://www.dc.com/characters/wonder-woman' };
-const superman = { name: 'DC · perfil oficial do Superman', url: 'https://www.dc.com/characters/superman' };
-const toyStory = { name: 'Pixar · Toy Story', url: 'https://www.pixar.com/toy-story' };
-const nemo = { name: 'Pixar · Procurando Nemo', url: 'https://www.pixar.com/finding-nemo' };
-const zelda = { name: 'Nintendo · o mundo de Breath of the Wild', url: 'https://play.nintendo.com/activities/puzzles/zelda-breath-of-the-wild-online-jigsaw-puzzle/' };
-const kirby = { name: 'Nintendo · Kirby’s Return to Dream Land Deluxe', url: 'https://www.nintendo.com/en-ca/whatsnew/the-tough-puff-is-back-in-kirbys-return-to-dream-land-deluxe/' };
-const luffy = { name: 'ONE PIECE.com · perfil oficial de Luffy', url: 'https://one-piece.com/character/luffy/index.html' };
-const zoro = { name: 'ONE PIECE.com · perfil oficial de Zoro', url: 'https://one-piece.com/character/zoro/index.html' };
-const hobbit = { name: 'Tolkien Estate · abertura de O Hobbit', url: 'https://www.tolkienestate.com/writing/' };
+const spiderMan = { name: 'Marvel · Homem-Aranha nas HQs', url: 'https://www.marvel.com/characters/spider-man-peter-parker/in-comics' };
+const blackPanther = { name: 'Marvel · Pantera Negra nas HQs', url: 'https://www.marvel.com/characters/black-panther-t-challa/in-comics' };
+const naruto = { name: 'NARUTO Official · apresentação da história', url: 'https://naruto-official.com/en/about' };
+const dragonBall = { name: 'Dragon Ball Official · técnicas de Goku', url: 'https://en.dragon-ball-official.com/news/01_140.html' };
+const jurassicPark = { name: 'Universal · Jurassic Park', url: 'https://www.universalpicturesathome.com/movies/jurassic-park' };
+const chewbacca = { name: 'StarWars.com · Chewbacca', url: 'https://www.starwars.com/databank/chewbacca' };
+const gryffindor = { name: 'HarryPotter.com · Grifinória', url: 'https://www.harrypotter.com/fact-file/magical-miscellany/gryffindor' };
+const creeper = { name: 'Mojang · a origem do Creeper', url: 'https://www.minecraft.net/en-us/article/meet-creeper' };
+const metroid = { name: 'Nintendo · Samus em Metroid Dread', url: 'https://www.nintendo.com/us/whatsnew/suit-up-as-samus-in-metroid-dread-available-now/' };
 
 export const geekQuizRounds: GeekRound[] = [
   {
-    id: '20261006-ilhas-reinos-brinquedos', title: 'Ilhas, reinos e brinquedos',
+    id: '20261009-teias-ninjas-dinossauros', title: 'Teias, ninjas e dinossauros',
     questions: [
-      { id: '20261006-diana-ilha', universe: 'HQs · Mulher-Maravilha', question: 'Em qual ilha Diana, a Mulher-Maravilha, foi criada?', options: ['Genosha', 'Themyscira', 'Madripoor', 'Krakoa'], answer: 1, explanation: 'Diana cresceu em Themyscira, a ilha das amazonas, também conhecida como Ilha Paraíso.', source: wonderWoman },
-      { id: '20261006-zelda-reino', universe: 'Games · The Legend of Zelda', question: 'Qual reino Link explora em Breath of the Wild?', options: ['Termina', 'Koholint', 'Hyrule', 'Holodrum'], answer: 2, explanation: 'Breath of the Wild leva Link pelo mundo aberto de Hyrule.', source: zelda },
-      { id: '20261006-woody-brinquedo', universe: 'Cinema · Toy Story', question: 'Que tipo de personagem o brinquedo Woody representa?', options: ['Caubói', 'Patrulheiro espacial', 'Soldado', 'Piloto de corrida'], answer: 0, explanation: 'Woody é um brinquedo de caubói; Buzz Lightyear é o patrulheiro espacial da dupla.', source: toyStory },
+      { id: '20261009-homem-aranha-identidade', universe: 'HQs · Homem-Aranha', question: 'Qual destes personagens é conhecido como Homem-Aranha nas HQs da Marvel?', options: ['Matt Murdock', 'Tony Stark', 'Bruce Banner', 'Peter Parker'], answer: 3, explanation: 'Peter Parker é o Homem-Aranha apresentado nesse perfil oficial da Marvel.', source: spiderMan },
+      { id: '20261009-naruto-sonho', universe: 'Anime · Naruto', question: 'No começo da história, qual cargo Naruto sonha em alcançar?', options: ['Hokage', 'Kazekage', 'Raikage', 'Mizukage'], answer: 0, explanation: 'Naruto quer se tornar Hokage, o líder da Vila Oculta da Folha. Esse sonho faz parte da premissa da série.', source: naruto },
+      { id: '20261009-jurassic-diretor', universe: 'Cinema · Jurassic Park', question: 'Quem dirigiu Jurassic Park, lançado em 1993?', options: ['James Cameron', 'George Lucas', 'Steven Spielberg', 'Ridley Scott'], answer: 2, explanation: 'Steven Spielberg dirigiu o Jurassic Park original, de 1993, como registra a ficha oficial da Universal.', source: jurassicPark },
     ],
-    poll: { question: 'Qual aventura combina mais com sua próxima sessão geek?', options: ['Super-heróis das HQs', 'Exploração em games', 'Animações no cinema', 'Aventuras de anime'] },
+    poll: { question: 'Qual adaptação geek você mais gostaria de acompanhar?', options: ['HQ transformada em filme', 'Anime em uma série com atores', 'Game em uma animação', 'Livro de fantasia em uma série'] },
   },
   {
-    id: '20261006-simbolos-e-origens', title: 'Símbolos e origens',
+    id: '20261009-reinos-magia-blocos', title: 'Reinos, magia e blocos',
     questions: [
-      { id: '20261006-luffy-chapeu', universe: 'Anime · One Piece', question: 'Qual acessório é a marca registrada de Monkey D. Luffy?', options: ['Óculos de aviador', 'Coroa dourada', 'Máscara de raposa', 'Chapéu de palha'], answer: 3, explanation: 'O chapéu de palha é a marca de Luffy. O perfil oficial destaca esse acessório desde sua infância.', source: luffy },
-      { id: '20261006-hobbit-abertura', universe: 'Fantasia · O Hobbit', question: 'Na frase de abertura de O Hobbit, em que lugar vive um hobbit?', options: ['Uma torre de pedra', 'Um buraco no chão', 'Um barco de madeira', 'Uma caverna de gelo'], answer: 1, explanation: 'A abertura apresenta um hobbit vivendo num buraco no chão. Logo em seguida, Tolkien associa essa moradia ao conforto.', source: hobbit },
-      { id: '20261006-superman-planeta', universe: 'HQs · Superman', question: 'Qual é o planeta de origem do Superman?', options: ['Oa', 'Thanagar', 'Krypton', 'Apokolips'], answer: 2, explanation: 'Superman nasceu em Krypton e foi criado em Smallville, na Terra.', source: superman },
+      { id: '20261009-pantera-pais', universe: 'HQs · Pantera Negra', question: 'Qual é o país de T’Challa, o Pantera Negra?', options: ['Latvéria', 'Wakanda', 'Genosha', 'Sokóvia'], answer: 1, explanation: 'Wakanda é a nação africana de T’Challa, descrita pela Marvel como secreta e muito avançada.', source: blackPanther },
+      { id: '20261009-grifinoria-simbolo', universe: 'Fantasia · Harry Potter', question: 'Qual animal representa a casa Grifinória em Hogwarts?', options: ['Águia', 'Texugo', 'Serpente', 'Leão'], answer: 3, explanation: 'O leão é o animal emblemático da Grifinória, associado à coragem e à bravura da casa.', source: gryffindor },
+      { id: '20261009-creeper-origem', universe: 'Games · Minecraft', question: 'O Creeper surgiu de um erro ao criar o modelo de qual animal?', options: ['Porco', 'Vaca', 'Ovelha', 'Galinha'], answer: 0, explanation: 'A Mojang conta que um erro nas dimensões do modelo de um porco deu origem ao Creeper.', source: creeper },
     ],
-    poll: { question: 'Qual tipo de protagonista mais prende sua atenção?', options: ['Herói que inspira esperança', 'Aventureiro de vida tranquila', 'Líder de uma tripulação', 'Anti-herói cheio de dilemas'] },
+    poll: { question: 'O que mais pesa na sua escolha de um game?', options: ['Jogabilidade e desafios', 'História e personagens', 'Mundo para explorar', 'Cooperação com amigos'] },
   },
   {
-    id: '20261006-habilidades-e-companhia', title: 'Habilidades e boa companhia',
+    id: '20261009-poderes-outra-galaxia', title: 'Poderes de outra galáxia',
     questions: [
-      { id: '20261006-kirby-super-habilidades', universe: 'Games · Kirby', question: 'Como Kirby ganha Super Habilidades em Kirby’s Return to Dream Land Deluxe?', options: ['Inalando inimigos brilhantes', 'Abrindo qualquer baú', 'Terminando uma corrida', 'Vestindo uma máscara comum'], answer: 0, explanation: 'Inimigos brilhantes podem ser inalados para conceder Super Habilidades, como explica a Nintendo.', source: kirby },
-      { id: '20261006-zoro-tres-espadas', universe: 'Anime · One Piece', question: 'Quantas espadas Zoro usa no seu característico estilo Santoryu?', options: ['Uma', 'Duas', 'Quatro', 'Três'], answer: 3, explanation: 'Santoryu é o estilo de três espadas de Zoro: duas nas mãos e uma segurada com a boca.', source: zoro },
-      { id: '20261006-nemo-pai', universe: 'Cinema · Procurando Nemo', question: 'Como se chama o pai de Nemo?', options: ['Gill', 'Marlin', 'Bruce', 'Crush'], answer: 1, explanation: 'Marlin é o pai de Nemo e parte pelo oceano para encontrar o filho.', source: nemo },
+      { id: '20261009-samus-profissao', universe: 'Games · Metroid', question: 'Como a Nintendo descreve a profissão de Samus Aran?', options: ['Diplomata galáctica', 'Comerciante espacial', 'Caçadora de recompensas', 'Arqueóloga interplanetária'], answer: 2, explanation: 'Samus Aran é uma caçadora de recompensas intergaláctica, a protagonista da série Metroid.', source: metroid },
+      { id: '20261009-kamehameha-criador', universe: 'Anime · Dragon Ball', question: 'Quem criou a técnica Kamehameha em Dragon Ball?', options: ['Vegeta', 'Mestre Kame', 'Piccolo', 'Goku'], answer: 1, explanation: 'Mestre Kame, chamado Kamesennin no site oficial, criou o Kamehameha. Goku aprende a técnica observando o mestre.', source: dragonBall },
+      { id: '20261009-chewbacca-especie', universe: 'Cinema · Star Wars', question: 'A qual espécie pertence Chewbacca?', options: ['Wookiee', 'Ewok', 'Hutt', 'Twi’lek'], answer: 0, explanation: 'Chewbacca é um Wookiee. O databank oficial de Star Wars identifica diretamente sua espécie.', source: chewbacca },
     ],
-    poll: { question: 'Qual companhia você escolheria para uma aventura fictícia?', options: ['Um grupo de amigos de anime', 'Uma equipe de heróis das HQs', 'Personagens de um game cooperativo', 'Um grupo de viajantes de fantasia'] },
+    poll: { question: 'Qual habilidade clássica você escolheria experimentar por um dia?', options: ['Lançar teias como o Homem-Aranha', 'Usar os equipamentos de Samus', 'Soltar um Kamehameha', 'Fazer feitiços como em Hogwarts'] },
   },
 ];
 
